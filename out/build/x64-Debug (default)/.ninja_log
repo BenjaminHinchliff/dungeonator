@@ -1,0 +1,7 @@
+# ninja log v5
+1	405	631156494	src/CMakeFiles/dungeonator.dir/dungeonator.cpp.obj	93f42683868e9c16
+406	1066	631156494	src/dungeonator.exe	a1440fbf989e2910
+1	48	631156994	src/CMakeFiles/dungeonator.dir/dungeonator.c.obj	5992404feea4e0d
+48	595	631156994	src/dungeonator.exe	c10771427e821920
+1	47	631157001	src/CMakeFiles/dungeonator.dir/dungeonator.c.obj	5992404feea4e0d
+47	561	631157001	src/dungeonator.exe	c10771427e821920
