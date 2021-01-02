@@ -1,16 +1,21 @@
 cmake_minimum_required(VERSION 3.11)
 
-find_package(Catch2)
-
+find_package(Catch2 QUIET)
 if(NOT ${Catch2_FOUND})
-include(FetchContent)
+	include(FetchContent)
 
-FetchContent_Declare(
-	Catch2
-	GIT_REPOSITORY https://github.com/catchorg/Catch2.git
-	GIT_TAG v2.13.1)
+	FetchContent_Declare(
+		catch2
+		GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+		GIT_TAG v2.13.1)
 
-FetchContent_MakeAvailable(Catch2)
+	FetchContent_GetProperties(Catch2)
+	if(NOT catch2_POPULATED)
+		set(FETCHCONTENT_QUIET OFF)
+		FetchContent_Populate(catch2)
+		set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${catch2_SOURCE_DIR}/contrib")
+		add_subdirectory(${catch2_SOURCE_DIR} ${catch2_BINARY_DIR})
+	endif()
 endif()
 
 add_executable(tests "main.cpp" "dungeonator_test.cpp")
