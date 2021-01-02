@@ -4,9 +4,9 @@
 
 TEST_CASE("maze generation works", "[maze]") {
   srand(42);
-  Maze maze = createMaze(17, 11);
-  char buffer[255];
-  printMaze(buffer, 255, &maze);
+  Maze maze = createMaze(51, 27);
+  char buffer[2048];
+  printMaze(buffer, 2048, &maze);
   ApprovalTests::Approvals::verify(buffer);
   freeMaze(&maze);
 }
