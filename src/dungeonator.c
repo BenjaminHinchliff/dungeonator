@@ -12,34 +12,36 @@ maze_t mallocMaze(size_t width, size_t height) {
   return maze;
 }
 
-maze_t zeroMaze(maze_t maze, size_t width, size_t height) {
-  for (size_t y = 0; y < height; ++y) {
-    for (size_t x = 0; x < width; ++x) {
-      maze[y][x] = false;
+void zeroMaze(Maze *maze) {
+  for (size_t y = 0; y < maze->height; ++y) {
+    for (size_t x = 0; x < maze->width; ++x) {
+      maze->data[y][x] = false;
     }
   }
+}
 
+Maze createMaze(size_t width, size_t height) {
+  Maze maze = {
+      .width = width,
+      .height = height,
+      .data = mallocMaze(width, height),
+  };
+  zeroMaze(&maze);
   return maze;
 }
 
-maze_t createMaze(size_t width, size_t height) {
-  maze_t maze = mallocMaze(width, height);
-  zeroMaze(maze, width, height);
-  return maze;
-}
-
-void printMaze(maze_t maze, size_t width, size_t height) {
-  for (size_t y = 0; y < height; ++y) {
-    for (size_t x = 0; x < width; ++x) {
-      printf("%c", maze[y][x] ? '#' : '.');
+void printMaze(Maze *maze) {
+  for (size_t y = 0; y < maze->height; ++y) {
+    for (size_t x = 0; x < maze->width; ++x) {
+      printf("%c", maze->data[y][x] ? '#' : '.');
     }
     printf("\n");
   }
 }
 
-void freeMaze(maze_t maze, size_t height) {
-  for (size_t y = 0; y < height; ++y) {
-    free(maze[y]);
+void freeMaze(Maze *maze) {
+  for (size_t y = 0; y < maze->height; ++y) {
+    free(maze->data[y]);
   }
-  free(maze);
+  free(maze->data);
 }

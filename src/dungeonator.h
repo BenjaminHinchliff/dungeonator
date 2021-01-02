@@ -2,24 +2,30 @@
 #define DUNGEONATOR_H
 
 #include <stdbool.h>
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif // __cplusplus
 
-typedef bool** maze_t;
+typedef bool **maze_t;
+
+typedef struct {
+  size_t width;
+  size_t height;
+  maze_t data;
+} Maze;
 
 maze_t mallocMaze(size_t width, size_t height);
 
-maze_t zeroMaze(maze_t maze, size_t width, size_t height);
+void zeroMaze(Maze *maze);
 
-maze_t createMaze(size_t width, size_t height);
+Maze createMaze(size_t width, size_t height);
 
-void printMaze(maze_t maze, size_t width, size_t height);
+void printMaze(Maze *maze);
 
-void freeMaze(maze_t maze, size_t height);
+void freeMaze(Maze *maze);
 
 #ifdef __cplusplus
 }
