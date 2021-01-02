@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <time.h>
+#include <string.h>
 
 #ifdef __cplusplus
 extern "C" {

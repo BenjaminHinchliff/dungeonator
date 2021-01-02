@@ -98,20 +98,13 @@ Maze createMaze(size_t width, size_t height) {
 void printMaze(char *str, size_t bufsz, Maze *maze) {
   if (bufsz > 0) {
     str[0] = '\0';
-    --bufsz;
   }
     
   for (size_t y = 0; y < maze->height; ++y) {
     for (size_t x = 0; x < maze->width; ++x) {
-      strncat(str, maze->data[y][x] ? "#" : ".", bufsz);
-      --bufsz;
-      if (bufsz == 0)
-        return;
+      strcat_s(str, bufsz, maze->data[y][x] ? "#" : ".");
     }
-    strncat(str, "\n", bufsz);
-    --bufsz;
-    if (bufsz == 0)
-      return;
+    strcat_s(str, bufsz, "\n");
   }
 }
 

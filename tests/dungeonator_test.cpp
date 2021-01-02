@@ -7,7 +7,6 @@ TEST_CASE("maze generation works", "[maze]") {
   Maze maze = createMaze(17, 11);
   char buffer[255];
   printMaze(buffer, 255, &maze);
-  printf("%s", buffer);
   ApprovalTests::Approvals::verify(buffer);
   freeMaze(&maze);
 }
