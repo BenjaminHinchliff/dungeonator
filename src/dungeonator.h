@@ -4,10 +4,23 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
+#include <time.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif // __cplusplus
+
+#define NUM_DIRECTIONS 4
+
+typedef enum {
+    NORTH,
+    EAST,
+    SOUTH,
+    WEST,
+} Directions;
+
+void directionToDelta(Directions direction, long long *dx, long long *dy);
 
 typedef bool **maze_t;
 
@@ -19,7 +32,7 @@ typedef struct {
 
 maze_t mallocMaze(size_t width, size_t height);
 
-void zeroMaze(Maze *maze);
+void fillMaze(Maze *maze);
 
 Maze createMaze(size_t width, size_t height);
 
