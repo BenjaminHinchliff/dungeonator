@@ -36,7 +36,7 @@ void fillMaze(Maze *maze);
 
 Maze createMaze(size_t width, size_t height);
 
-void printMaze(Maze *maze);
+void printMaze(char *str, size_t bufsz, Maze *maze);
 
 void freeMaze(Maze *maze);
 

@@ -91,17 +91,27 @@ Maze createMaze(size_t width, size_t height) {
       .data = mallocMaze(width, height),
   };
   fillMaze(&maze);
-  srand((unsigned int)time(NULL));
   backtrackMaze(&maze, 1, 1);
   return maze;
 }
 
-void printMaze(Maze *maze) {
+void printMaze(char *str, size_t bufsz, Maze *maze) {
+  if (bufsz > 0) {
+    str[0] = '\0';
+    --bufsz;
+  }
+    
   for (size_t y = 0; y < maze->height; ++y) {
     for (size_t x = 0; x < maze->width; ++x) {
-      printf("%c", maze->data[y][x] ? '#' : '.');
+      strncat(str, maze->data[y][x] ? "#" : ".", bufsz);
+      --bufsz;
+      if (bufsz == 0)
+        return;
     }
-    printf("\n");
+    strncat(str, "\n", bufsz);
+    --bufsz;
+    if (bufsz == 0)
+      return;
   }
 }
 
