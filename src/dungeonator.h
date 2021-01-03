@@ -1,12 +1,12 @@
 #ifndef DUNGEONATOR_H
 #define DUNGEONATOR_H
 
+#include <assert.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <assert.h>
-#include <time.h>
 #include <string.h>
+#include <time.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -14,34 +14,46 @@ extern "C" {
 
 #define NUM_DIRECTIONS 4
 
-typedef enum {
-    NORTH,
-    EAST,
-    SOUTH,
-    WEST,
+typedef enum DirectionsEnum {
+  NORTH,
+  EAST,
+  SOUTH,
+  WEST,
 } Directions;
 
-void directionToDelta(Directions direction, long long *dx, long long *dy);
+void directionToDelta(Directions direction, int *dx, int *dy);
 
 typedef bool **maze_t;
 
-typedef struct {
-  size_t width;
-  size_t height;
+typedef struct Grids {
+  int width;
+  int height;
   maze_t data;
 } Grid;
 
-maze_t mallocGrid(size_t width, size_t height);
+maze_t mallocGrid(int width, int height);
 
-void fillGrid(Grid *maze, bool value);
+void fillGrid(Grid *maze, int x1, int y1, int x2, int y2,
+              bool value);
 
-Grid createGrid(size_t width, size_t height);
+Grid createGrid(int width, int height);
 
-void backtrackMaze(Grid *maze, size_t x, size_t y);
-
-void printGrid(char *str, size_t bufsz, Grid *maze);
+void printGrid(char *str, int bufsz, Grid *maze);
 
 void freeGrid(Grid *maze);
+
+void backtrackMaze(Grid *maze, int x, int y);
+
+typedef struct Rooms {
+  int x1;
+  int y1;
+  int x2;
+  int y2;
+} Room;
+
+bool isOverlapping(Room *A, Room *B);
+
+void placeRoomsInGrid(Grid *grid, int tries, int roomAddSize);
 
 #ifdef __cplusplus
 }

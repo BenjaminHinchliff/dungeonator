@@ -11,3 +11,22 @@ TEST_CASE("maze generation works", "[maze]") {
   ApprovalTests::Approvals::verify(buffer);
   freeGrid(&maze);
 }
+
+TEST_CASE("rooms correctly overlap", "[rooms]") {
+  SECTION("non-overlapping rooms are detected as such") {
+    Room roomA{1, 2, 3, 4};
+    Room roomB{5, 6, 7, 8};
+    REQUIRE(!isOverlapping(&roomA, &roomB));
+  }
+  SECTION("overlapping rooms are detected as such") {
+    Room roomA{1, 2, 3, 4};
+    Room roomB{2, 3, 4, 5};
+    REQUIRE(isOverlapping(&roomA, &roomB));
+  }
+}
+
+TEST_CASE("room placing works", "[rooms]") {
+  srand(42);
+  Grid maze = createGrid(51, 27);
+  placeRoomsInGrid(&maze, 500, 2);
+}
