@@ -24,7 +24,7 @@ void directionToDelta(Directions direction, long long *dx, long long *dy) {
   }
 }
 
-maze_t mallocMaze(size_t width, size_t height) {
+maze_t mallocGrid(size_t width, size_t height) {
   maze_t maze = malloc(sizeof(bool *) * height);
   if (maze == NULL)
     return NULL;
@@ -36,10 +36,10 @@ maze_t mallocMaze(size_t width, size_t height) {
   return maze;
 }
 
-void fillMaze(Maze *maze) {
+void fillGrid(Grid *maze, bool value) {
   for (size_t y = 0; y < maze->height; ++y) {
     for (size_t x = 0; x < maze->width; ++x) {
-      maze->data[y][x] = true;
+      maze->data[y][x] = value;
     }
   }
 }
@@ -56,13 +56,13 @@ void shuffleDirections(Directions *array, size_t n) {
   }
 }
 
-bool noPassages(Maze *maze, size_t nx, size_t ny) {
+bool noPassages(Grid *maze, size_t nx, size_t ny) {
   maze_t data = maze->data;
   return data[ny - 1][nx] && data[ny][nx + 1] && data[ny + 1][nx] &&
          data[ny][nx - 1];
 }
 
-void backtrackMaze(Maze *maze, size_t x, size_t y) {
+void backtrackMaze(Grid *maze, size_t x, size_t y) {
   Directions directions[NUM_DIRECTIONS] = {NORTH, EAST, SOUTH, WEST};
   shuffleDirections(directions, NUM_DIRECTIONS);
 
@@ -81,21 +81,20 @@ void backtrackMaze(Maze *maze, size_t x, size_t y) {
   }
 }
 
-Maze createMaze(size_t width, size_t height) {
+Grid createGrid(size_t width, size_t height) {
   assert(width % 2 == 1 && height % 2 == 1 &&
          "width and height must be odd for mazes");
   assert(width >= 3 && height >= 3 && "maze must be at least 3 by 3");
-  Maze maze = {
+  Grid maze = {
       .width = width,
       .height = height,
-      .data = mallocMaze(width, height),
+      .data = mallocGrid(width, height),
   };
-  fillMaze(&maze);
-  backtrackMaze(&maze, 1, 1);
+  fillGrid(&maze, true);
   return maze;
 }
 
-void printMaze(char *str, size_t bufsz, Maze *maze) {
+void printGrid(char *str, size_t bufsz, Grid *maze) {
   if (bufsz > 0) {
     str[0] = '\0';
     --bufsz;
@@ -113,7 +112,7 @@ void printMaze(char *str, size_t bufsz, Maze *maze) {
   }
 }
 
-void freeMaze(Maze *maze) {
+void freeGrid(Grid *maze) {
   for (size_t y = 0; y < maze->height; ++y) {
     free(maze->data[y]);
   }

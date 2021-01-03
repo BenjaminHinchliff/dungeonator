@@ -4,9 +4,10 @@
 
 TEST_CASE("maze generation works", "[maze]") {
   srand(42);
-  Maze maze = createMaze(51, 27);
+  Grid maze = createGrid(51, 27);
+  backtrackMaze(&maze, 1, 1);
   char buffer[2048];
-  printMaze(buffer, 2048, &maze);
+  printGrid(buffer, 2048, &maze);
   ApprovalTests::Approvals::verify(buffer);
-  freeMaze(&maze);
+  freeGrid(&maze);
 }

@@ -29,17 +29,19 @@ typedef struct {
   size_t width;
   size_t height;
   maze_t data;
-} Maze;
+} Grid;
 
-maze_t mallocMaze(size_t width, size_t height);
+maze_t mallocGrid(size_t width, size_t height);
 
-void fillMaze(Maze *maze);
+void fillGrid(Grid *maze, bool value);
 
-Maze createMaze(size_t width, size_t height);
+Grid createGrid(size_t width, size_t height);
 
-void printMaze(char *str, size_t bufsz, Maze *maze);
+void backtrackMaze(Grid *maze, size_t x, size_t y);
 
-void freeMaze(Maze *maze);
+void printGrid(char *str, size_t bufsz, Grid *maze);
+
+void freeGrid(Grid *maze);
 
 #ifdef __cplusplus
 }
