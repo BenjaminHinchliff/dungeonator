@@ -16,6 +16,8 @@ if(NOT ${Catch2_FOUND})
 		set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${catch2_SOURCE_DIR}/contrib")
 		add_subdirectory(${catch2_SOURCE_DIR} ${catch2_BINARY_DIR})
 	endif()
+else()
+	message(STATUS "Found installed Catch2")
 endif()
 
 include(FetchContent)
