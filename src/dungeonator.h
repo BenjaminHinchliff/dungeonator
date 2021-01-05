@@ -38,7 +38,9 @@ void fillGrid(Grid *maze, int x1, int y1, int x2, int y2,
 
 Grid createGrid(int width, int height);
 
-void printGrid(char *str, int bufsz, Grid *maze);
+void printGridToString(char *str, int bufsz, Grid *maze);
+
+void printGrid(Grid *maze);
 
 void freeGrid(Grid *maze);
 

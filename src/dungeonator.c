@@ -36,12 +36,14 @@ maze_t mallocGrid(int width, int height) {
   return maze;
 }
 
-void fillGrid(Grid *maze, int x1, int y1, int x2, int y2,
-              bool value) {
+void fillGrid(Grid *maze, int x1, int y1, int x2, int y2, bool value) {
+#ifndef NDEBUG
   assert(x1 < x2 && y1 < y2 && "start x & y must be less than end x & y");
-  assert(x2 < maze->width && y2 < maze->height && "must be smaller than board");
-  for (int y = y1; y < maze->height; ++y) {
-    for (int x = 0; x < maze->width; ++x) {
+  assert(x2 <= maze->width && y2 <= maze->height &&
+         "must be smaller than board");
+#endif // !NDEBUG
+  for (int y = y1; y < y2; ++y) {
+    for (int x = x1; x < x2; ++x) {
       maze->data[y][x] = value;
     }
   }
@@ -77,7 +79,7 @@ Grid createGrid(int width, int height) {
   return maze;
 }
 
-void printGrid(char *str, size_t bufsz, Grid *maze) {
+void printGridToString(char *str, size_t bufsz, Grid *maze) {
   if (bufsz > 0) {
     str[0] = '\0';
     --bufsz;
@@ -92,6 +94,15 @@ void printGrid(char *str, size_t bufsz, Grid *maze) {
     strncat(str, "\n", bufsz);
     if (--bufsz == 0)
       return;
+  }
+}
+
+void printGrid(Grid *maze) {
+  for (int y = 0; y < maze->height; ++y) {
+    for (int x = 0; x < maze->width; ++x) {
+      printf("%c", maze->data[y][x] ? '#' : '.');
+    }
+    printf("\n");
   }
 }
 
@@ -112,7 +123,8 @@ void backtrackMaze(Grid *maze, int x, int y) {
     int nx = x + 2 * dx;
     int ny = y + 2 * dy;
 
-    if (nx >= 0 && nx < maze->width && ny >= 0 && ny < maze->height && noPassages(maze, nx, ny)) {
+    if (nx >= 0 && nx < maze->width && ny >= 0 && ny < maze->height &&
+        noPassages(maze, nx, ny)) {
       maze->data[y][x] = false;
       maze->data[y + dy][x + dx] = false;
       maze->data[ny][nx] = false;
@@ -121,9 +133,8 @@ void backtrackMaze(Grid *maze, int x, int y) {
   }
 }
 
-
 int uniform_distribution(int rangeLow, int rangeHigh) {
-  int range = rangeHigh - rangeLow + 1;
+  int range = rangeHigh - rangeLow;
   int copies = RAND_MAX / range;
   int limit = range * copies;
   int myRand;
@@ -138,13 +149,15 @@ bool isOverlapping(Room *roomA, Room *roomB) {
          roomA->y1 < roomB->y2 && roomB->y2 > roomB->y1;
 }
 
-#define MAX_TRIES 500
+#define MAX_ROOMS 500
 
 void placeRoomsInGrid(Grid *grid, int tries, int roomAddSize) {
-  Room rooms[MAX_TRIES];
+  Room rooms[MAX_ROOMS];
   int room_num = 0;
   for (int i = 0; i < tries; ++i) {
-    int size = uniform_distribution(1, 3 + roomAddSize) + 1;
+    if (room_num == MAX_ROOMS)
+      return;
+    int size = uniform_distribution(1, 3 + roomAddSize) * 2 + 1;
     int rectangularity = uniform_distribution(0, 1 + size / 2) * 2;
     int width = size;
     int height = size;
@@ -158,15 +171,15 @@ void placeRoomsInGrid(Grid *grid, int tries, int roomAddSize) {
     int y = uniform_distribution(0, (grid->height - height) / 2) * 2 + 1;
 
     Room room = {
-      .x1 = x,
-      .y1 = y,
-      .x2 = x + width,
-      .y2 = y + height,
+        .x1 = x,
+        .y1 = y,
+        .x2 = x + width,
+        .y2 = y + height,
     };
 
     bool overlap = false;
     for (int i = 0; i < room_num; ++i) {
-      if (isOverlapping(&room, &rooms[room_num])) {
+      if (isOverlapping(&room, &rooms[i])) {
         overlap = true;
         break;
       }
@@ -175,9 +188,7 @@ void placeRoomsInGrid(Grid *grid, int tries, int roomAddSize) {
     if (overlap)
       continue;
 
-    rooms[room_num++] = room;
-
     fillGrid(grid, room.x1, room.y1, room.x2, room.y2, false);
-    //printGrid(stdout, 65535, grid);
+    rooms[room_num++] = room;
   }
 }

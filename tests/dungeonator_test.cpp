@@ -7,7 +7,7 @@ TEST_CASE("maze generation works", "[maze]") {
   Grid maze = createGrid(51, 27);
   backtrackMaze(&maze, 1, 1);
   char buffer[2048];
-  printGrid(buffer, 2048, &maze);
+  printGridToString(buffer, 2048, &maze);
   ApprovalTests::Approvals::verify(buffer);
   freeGrid(&maze);
 }
@@ -28,5 +28,9 @@ TEST_CASE("rooms correctly overlap", "[rooms]") {
 TEST_CASE("room placing works", "[rooms]") {
   srand(42);
   Grid maze = createGrid(51, 27);
-  placeRoomsInGrid(&maze, 500, 2);
+  placeRoomsInGrid(&maze, 1000, 2);
+  char buffer[2048];
+  printGridToString(buffer, 2048, &maze);
+  ApprovalTests::Approvals::verify(buffer);
+  freeGrid(&maze);
 }
