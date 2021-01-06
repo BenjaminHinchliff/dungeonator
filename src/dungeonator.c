@@ -75,7 +75,7 @@ Grid createGrid(int width, int height) {
       .height = height,
       .data = mallocGrid(width, height),
   };
-  fillGrid(&maze, 0, 0, maze.width - 1, maze.height - 1, true);
+  fillGrid(&maze, 0, 0, maze.width, maze.height, true);
   return maze;
 }
 
