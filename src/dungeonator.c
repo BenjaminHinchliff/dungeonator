@@ -1,6 +1,6 @@
 ﻿#include "dungeonator.h"
 
-void directionToDelta(Directions direction, int *dx, int *dy) {
+void directionToDelta(Direction direction, int* dx, int* dy) {
   switch (direction) {
   case NORTH:
     *dx = 0;
@@ -24,8 +24,11 @@ void directionToDelta(Directions direction, int *dx, int *dy) {
   }
 }
 
+/**
+* 
+*/
 maze_t mallocGrid(int width, int height) {
-  maze_t maze = malloc(sizeof(bool *) * height);
+  maze_t maze = malloc(sizeof(bool*) * height);
   if (maze == NULL)
     return NULL;
   for (int y = 0; y < height; ++y) {
@@ -36,11 +39,11 @@ maze_t mallocGrid(int width, int height) {
   return maze;
 }
 
-void fillGrid(Grid *maze, int x1, int y1, int x2, int y2, bool value) {
+void fillGrid(Grid* maze, int x1, int y1, int x2, int y2, bool value) {
 #ifndef NDEBUG
-  assert(x1 < x2 && y1 < y2 && "start x & y must be less than end x & y");
+  assert(x1 < x2&& y1 < y2 && "start x & y must be less than end x & y");
   assert(x2 <= maze->width && y2 <= maze->height &&
-         "must be smaller than board");
+    "must be smaller than board");
 #endif // !NDEBUG
   for (int y = y1; y < y2; ++y) {
     for (int x = x1; x < x2; ++x) {
@@ -49,26 +52,26 @@ void fillGrid(Grid *maze, int x1, int y1, int x2, int y2, bool value) {
   }
 }
 
-void shuffleDirections(Directions *array, int n) {
+void shuffleDirections(Direction* array, int n) {
   if (n > 1) {
     for (int i = 0; i < n - 1; i++) {
       int j = i + rand() / (RAND_MAX / (n - i) + 1);
-      Directions t = array[j];
+      Direction t = array[j];
       array[j] = array[i];
       array[i] = t;
     }
   }
 }
 
-bool noPassages(Grid *maze, int nx, int ny) {
+bool noPassages(Grid* maze, int nx, int ny) {
   maze_t data = maze->data;
   return data[ny - 1][nx] && data[ny][nx + 1] && data[ny + 1][nx] &&
-         data[ny][nx - 1];
+    data[ny][nx - 1];
 }
 
 Grid createGrid(int width, int height) {
   assert(width % 2 == 1 && height % 2 == 1 &&
-         "width and height must be odd for mazes");
+    "width and height must be odd for mazes");
   assert(width >= 3 && height >= 3 && "maze must be at least 3 by 3");
   Grid maze = {
       .width = width,
@@ -79,7 +82,7 @@ Grid createGrid(int width, int height) {
   return maze;
 }
 
-void printGridToString(char *str, size_t bufsz, Grid *maze) {
+void printGridToString(char* str, size_t bufsz, Grid* maze) {
   if (bufsz > 0) {
     str[0] = '\0';
     --bufsz;
@@ -97,7 +100,7 @@ void printGridToString(char *str, size_t bufsz, Grid *maze) {
   }
 }
 
-void printGrid(Grid *maze) {
+void printGrid(Grid* maze) {
   for (int y = 0; y < maze->height; ++y) {
     for (int x = 0; x < maze->width; ++x) {
       printf("%c", maze->data[y][x] ? '#' : '.');
@@ -106,15 +109,15 @@ void printGrid(Grid *maze) {
   }
 }
 
-void freeGrid(Grid *maze) {
+void freeGrid(Grid* maze) {
   for (int y = 0; y < maze->height; ++y) {
     free(maze->data[y]);
   }
   free(maze->data);
 }
 
-void backtrackMaze(Grid *maze, int x, int y) {
-  Directions directions[NUM_DIRECTIONS] = {NORTH, EAST, SOUTH, WEST};
+void backtrackMaze(Grid* maze, int x, int y) {
+  Direction directions[NUM_DIRECTIONS] = { NORTH, EAST, SOUTH, WEST };
   shuffleDirections(directions, NUM_DIRECTIONS);
 
   for (int i = 0; i < NUM_DIRECTIONS; ++i) {
@@ -124,7 +127,7 @@ void backtrackMaze(Grid *maze, int x, int y) {
     int ny = y + 2 * dy;
 
     if (nx >= 0 && nx < maze->width && ny >= 0 && ny < maze->height &&
-        noPassages(maze, nx, ny)) {
+      noPassages(maze, nx, ny)) {
       maze->data[y][x] = false;
       maze->data[y + dy][x + dx] = false;
       maze->data[ny][nx] = false;
@@ -144,14 +147,14 @@ int uniform_distribution(int rangeLow, int rangeHigh) {
   return myRand / copies + rangeLow;
 }
 
-bool isOverlapping(Room *roomA, Room *roomB) {
-  return roomA->x1 < roomB->x2 && roomA->x2 > roomB->x1 &&
-         roomA->y1 < roomB->y2 && roomB->y2 > roomB->y1;
+bool isOverlapping(Room* roomA, Room* roomB) {
+  return roomA->x1 < roomB->x2&& roomA->x2 > roomB->x1 &&
+    roomA->y1 < roomB->y2&& roomB->y2 > roomB->y1;
 }
 
 #define MAX_ROOMS 500
 
-void placeRoomsInGrid(Grid *grid, int tries, int roomAddSize) {
+void placeRoomsInGrid(Grid* grid, int tries, int roomAddSize) {
   Room rooms[MAX_ROOMS];
   int room_num = 0;
   for (int i = 0; i < tries; ++i) {
@@ -163,7 +166,8 @@ void placeRoomsInGrid(Grid *grid, int tries, int roomAddSize) {
     int height = size;
     if (rand() % 2 == 0) {
       width += rectangularity;
-    } else {
+    }
+    else {
       height += rectangularity;
     }
 

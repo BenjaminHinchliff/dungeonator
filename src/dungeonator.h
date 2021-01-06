@@ -1,6 +1,13 @@
 #ifndef DUNGEONATOR_H
 #define DUNGEONATOR_H
 
+/**
+* \file dungeonator.h
+* \brief main include file
+* 
+* the core file that has all of the logic function declarations provided by the library
+*/
+
 #include <assert.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -14,14 +21,25 @@ extern "C" {
 
 #define NUM_DIRECTIONS 4
 
-typedef enum DirectionsEnum {
+/**
+* enum for the cardinal directions on a grid - used for the backtracking algorithm
+*/
+typedef enum Directions {
   NORTH,
   EAST,
   SOUTH,
   WEST,
-} Directions;
+} Direction;
 
-void directionToDelta(Directions direction, int *dx, int *dy);
+/**
+* convert the direction enum to a change in x and y, normalized, for use by the backtracking algorithm
+*
+* @param direction the direction to convert
+*
+* @param dx a pointer to a variable to write the change in x to, cannot be null
+* @param dy a pointer to a variable to write the change in xy to, cannot be null
+*/
+void directionToDelta(Direction direction, int *dx, int *dy);
 
 typedef bool **maze_t;
 
