@@ -17,11 +17,9 @@ extern "C" {
 
   bool isOverlapping(Room* A, Room* B);
 
-#ifndef MAX_ROOMS
-#define MAX_ROOMS 50
-#endif
+#define ROOMS_ALLOC_SIZE 20
 
-  void placeRoomsInGrid(Grid* grid, int tries, int roomAddSize, int* region);
+  bool placeRoomsInGrid(Grid* grid, int tries, int roomAddSize, int* region);
 
 #ifdef __cplusplus
 }

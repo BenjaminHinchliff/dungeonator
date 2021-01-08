@@ -34,8 +34,8 @@ bool generateDungeon(int width, int height, int placeTries, int additionalRoomSi
     return grid;
   }
   int remaining_regions = region;
-  int merged[MAX_REGIONS];
-  for (int i = 0; i < MAX_REGIONS; ++i) {
+  int *merged = malloc(sizeof(int) * (region + 1ull));
+  for (int i = 0; i <= region; ++i) {
     merged[i] = i;
   }
   while (remaining_regions > 1) {
@@ -73,6 +73,7 @@ bool generateDungeon(int width, int height, int placeTries, int additionalRoomSi
       }
     }
   }
+  free(merged);
   free(connectors);
   return grid;
 }

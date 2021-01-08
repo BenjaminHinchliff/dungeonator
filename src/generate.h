@@ -10,8 +10,6 @@
 extern "C" {
 #endif // __cplusplus
 
-#define MAX_REGIONS MAX_ROOMS + 1
-
   bool generateDungeon(int width, int height, int placeTries, int additionalRoomSize, Grid* grid);
 
 #ifdef __cplusplus

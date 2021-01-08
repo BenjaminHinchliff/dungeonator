@@ -5,12 +5,24 @@ bool isOverlapping(Room* roomA, Room* roomB) {
     roomA->y1 < roomB->y2&& roomB->y2 > roomB->y1;
 }
 
-void placeRoomsInGrid(Grid* grid, int tries, int roomAddSize, int* region) {
-  Room rooms[MAX_ROOMS];
+bool placeRoomsInGrid(Grid* grid, int tries, int roomAddSize, int* region) {
+  Room *rooms = malloc(sizeof(Room) * ROOMS_ALLOC_SIZE);
+  if (rooms == NULL) {
+    fprintf(stderr, "failed to allocate rooms array");
+    return false;
+  }
+  size_t rooms_capacity = ROOMS_ALLOC_SIZE;
   int room_num = 0;
   for (int i = 0; i < tries; ++i) {
-    if (room_num == MAX_ROOMS)
-      return;
+    if (room_num == ROOMS_ALLOC_SIZE) {
+      Room* newRooms = realloc(rooms, sizeof(Room) * (rooms_capacity += ROOMS_ALLOC_SIZE));
+      if (newRooms == NULL) {
+        fprintf(stderr, "failed to expand rooms array");
+        free(rooms);
+        return false;
+      }
+      rooms = newRooms;
+    }
     int size = uniform_distribution(1, 3 + roomAddSize) * 2 + 1;
     int rectangularity = uniform_distribution(0, 1 + size / 2) * 2;
     int width = size;
@@ -40,15 +52,16 @@ void placeRoomsInGrid(Grid* grid, int tries, int roomAddSize, int* region) {
       }
     }
 
-    if (overlap)
-      continue;
-
-    Position position = {
+    if (!overlap) {
+      const Position position = {
       .tile = FLOOR,
       .region = (*region)++,
-    };
+      };
 
-    fillGrid(grid, room.x1, room.y1, room.x2, room.y2, position);
-    rooms[room_num++] = room;
+      fillGrid(grid, room.x1, room.y1, room.x2, room.y2, position);
+      rooms[room_num++] = room;
+    }
   }
+  free(rooms);
+  return true;
 }
