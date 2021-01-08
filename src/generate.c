@@ -11,29 +11,28 @@ bool contains(int* arr, size_t start, size_t end, int element) {
   return false;
 }
 
-Grid generateDungeon(int width, int height, int placeTries, int additionalRoomSize) {
+bool generateDungeon(int width, int height, int placeTries, int additionalRoomSize, Grid *grid) {
   int region = 0;
 
-  Grid grid = createGrid(width, height);
-  placeRoomsInGrid(&grid, placeTries, additionalRoomSize, &region);
-  for (int y = 1; y < grid.height; y += 2) {
-    for (int x = 1; x < grid.width; x += 2) {
-      if (grid.data[y][x].tile == WALL) {
-        backtrackMaze(&grid, x, y, region++);
+  bool success = createGrid(width, height, grid);
+  if (!success) {
+    fprintf(stderr, "failed to create grid");
+    return false;
+  }
+  placeRoomsInGrid(grid, placeTries, additionalRoomSize, &region);
+  for (int y = 1; y < grid->height; y += 2) {
+    for (int x = 1; x < grid->width; x += 2) {
+      if (grid->data[y][x].tile == WALL) {
+        backtrackMaze(grid, x, y, region++);
       }
     }
   }
   size_t num_connectors;
-  Connector* connectors = getConnectors(&grid, &num_connectors);
+  Connector* connectors = getConnectors(grid, &num_connectors);
   if (!connectors) {
     fprintf(stderr, "something went wrong with getting connectors - generation failed");
     return grid;
   }
-  for (size_t i = 0; i < num_connectors; ++i) {
-    Connector* conn = &connectors[i];
-    printf("%llu - Connector at x: %d, y: %d\n", i, conn->x, conn->y);
-  }
-  printf("%d\n", region);
   int remaining_regions = region;
   int merged[MAX_REGIONS];
   for (int i = 0; i < MAX_REGIONS; ++i) {
@@ -50,7 +49,7 @@ Grid generateDungeon(int width, int height, int placeTries, int additionalRoomSi
       .tile = DOOR,
     };
 
-    grid.data[connector->y][connector->x] = fill;
+    grid->data[connector->y][connector->x] = fill;
 
     int num_regions;
     int* regions = mapMergedRegions(connector, merged, &num_regions);
@@ -73,11 +72,6 @@ Grid generateDungeon(int width, int height, int placeTries, int additionalRoomSi
         connectors[i].used = true;
       }
     }
-  }
-  for (size_t i = 0; i < num_connectors; ++i) {
-    if (connectors[i].used) continue;
-    Connector* conn = &connectors[i];
-    printf("%llu - Connector at x: %d, y: %d\n", i, conn->x, conn->y);
   }
   free(connectors);
   return grid;

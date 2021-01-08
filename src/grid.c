@@ -2,12 +2,16 @@
 
 maze_t mallocGrid(int width, int height) {
   maze_t maze = malloc(sizeof(Position*) * height);
-  if (maze == NULL)
+  if (maze == NULL) {
+    fprintf(stderr, "failed to allocate outer memory for grid");
     return NULL;
+  }
   for (int y = 0; y < height; ++y) {
     maze[y] = malloc(sizeof(Position) * width);
-    if (maze[y] == NULL)
+    if (maze[y] == NULL) {
+      fprintf(stderr, "failed to allocate inner memory for grid");
       return NULL;
+    }
   }
   return maze;
 }
@@ -25,23 +29,29 @@ void fillGrid(Grid* maze, int x1, int y1, int x2, int y2, Position value) {
   }
 }
 
-Grid createGrid(int width, int height) {
+bool createGrid(int width, int height, Grid* grid) {
 #ifndef NDEBUG
   assert(width % 2 == 1 && height % 2 == 1 &&
     "width and height must be odd for mazes");
-  assert(width >= 3 && height >= 3 && "maze must be at least 3 by 3");
+  assert(width >= 3 && height >= 3 && "grid must be at least 3 by 3");
 #endif // !NDEBUG
-  Grid maze = {
-      .width = width,
-      .height = height,
-      .data = mallocGrid(width, height),
+  maze_t data = mallocGrid(width, height);
+  if (data == NULL) {
+    fprintf(stderr, "Failed to malloc grid");
+    return false;
+  }
+  *grid = (Grid){
+    .width = width,
+    .height = height,
+    .data = data
   };
+
   Position fill = {
     .region = -1,
     .tile = WALL,
   };
-  fillGrid(&maze, 0, 0, maze.width, maze.height, fill);
-  return maze;
+  fillGrid(grid, 0, 0, grid->width, grid->height, fill);
+  return grid;
 }
 
 void printGridToString(char* str, size_t bufsz, Grid* maze) {

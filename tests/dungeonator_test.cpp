@@ -4,7 +4,11 @@
 
 TEST_CASE("maze generation works", "[maze]") {
   srand(42);
-  Grid maze = createGrid(51, 27);
+  Grid maze;
+  bool success = createGrid(51, 27, &maze);
+  if (!success) {
+    throw std::runtime_error("failed to create grid");
+  }
   backtrackMaze(&maze, 1, 1, 0);
   char buffer[2048];
   printGridToString(buffer, 2048, &maze);
@@ -27,7 +31,11 @@ TEST_CASE("rooms correctly overlap", "[rooms]") {
 
 TEST_CASE("room placing works", "[rooms]") {
   srand(42);
-  Grid grid = createGrid(51, 27);
+  Grid grid;
+  bool success = createGrid(51, 27, &grid);
+  if (!success) {
+    throw std::runtime_error("failed to create grid");
+  }
   int region = 0;
   placeRoomsInGrid(&grid, 1000, 2, &region);
   char buffer[2048];
@@ -38,7 +46,11 @@ TEST_CASE("room placing works", "[rooms]") {
 
 TEST_CASE("dungeon generation works", "[rooms]") {
   srand(42);
-  Grid grid = generateDungeon(51, 27, 1000, 2);
+  Grid grid;
+  bool success = generateDungeon(51, 27, 1000, 2, &grid);
+  if (!success) {
+    throw std::runtime_error("failed to generate dungeon");
+  }
   char buffer[2048];
   printGridToString(buffer, 2048, &grid);
   ApprovalTests::Approvals::verify(buffer);

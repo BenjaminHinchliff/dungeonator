@@ -81,8 +81,11 @@ extern "C" {
   *
   * \param[in] width the width of the grid
   * \param[in] height the height of the grid
+  * \param[out] the created grid
+  * 
+  * \returns a boolean value indicating the success of the creation
   */
-  Grid createGrid(int width, int height);
+  bool createGrid(int width, int height, Grid* grid);
 
   /**
   * an alternative print function to allow printing a grid to a string
