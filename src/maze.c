@@ -4,22 +4,19 @@ bool noPassages(Grid* maze, int nx, int ny) {
   for (int i = 0; i < NUM_DIRECTIONS; ++i) {
     int dx, dy;
     directionToDelta(CARDINAL[i], &dx, &dy);
-    if (maze->data[ny + dy][nx + dx].tile != WALL) {
+    if (maze->data[ny + dy][nx + dx] != WALL) {
       return false;
     }
   }
   return true;
 }
 
-void backtrackMaze(Grid* maze, int x, int y, int region) {
+void backtrackMaze(Grid* maze, regions_t regions, int x, int y, int region) {
   Direction directions[NUM_DIRECTIONS] = { NORTH, EAST, SOUTH, WEST };
   shuffleDirections(directions, NUM_DIRECTIONS);
 
-  const Position fill = {
-        .region = region,
-        .tile = FLOOR,
-  };
-  maze->data[y][x] = fill;
+  maze->data[y][x] = FLOOR;
+  regions[y][x] = region;
 
   for (int i = 0; i < NUM_DIRECTIONS; ++i) {
     int dx, dy;
@@ -29,9 +26,11 @@ void backtrackMaze(Grid* maze, int x, int y, int region) {
 
     if (nx >= 0 && nx < maze->width && ny >= 0 && ny < maze->height &&
       noPassages(maze, nx, ny)) {
-      maze->data[y + dy][x + dx] = fill;
-      maze->data[ny][nx] = fill;
-      backtrackMaze(maze, nx, ny, region);
+      maze->data[y + dy][x + dx] = FLOOR;
+      regions[y + dy][x + dx] = region;
+      maze->data[ny][nx] = FLOOR;
+      regions[ny][nx] = region;
+      backtrackMaze(maze, regions, nx, ny, region);
     }
   }
 }

@@ -8,17 +8,23 @@ bool generateDungeon(Grid* grid, int width, int height, int placeTries, int addi
     fprintf(stderr, "failed to create grid");
     return false;
   }
-  placeRoomsInGrid(grid, placeTries, additionalRoomSize, &region);
+  regions_t regions = mallocRegions(width, height);
+  if (regions == NULL) {
+    fprintf(stderr, "failed to create regions");
+    return false;
+  }
+  fillRegion(regions, 0, 0, width, height, -1);
+  placeRoomsInGrid(grid, regions, placeTries, additionalRoomSize, &region);
   for (int y = 1; y < grid->height; y += 2) {
     for (int x = 1; x < grid->width; x += 2) {
-      if (grid->data[y][x].tile == WALL) {
-        backtrackMaze(grid, x, y, region++);
+      if (grid->data[y][x] == WALL) {
+        backtrackMaze(grid, regions, x, y, region++);
       }
     }
   }
 
   size_t num_connectors;
-  Connector* connectors = getConnectors(grid, &num_connectors);
+  Connector* connectors = getConnectors(grid, regions, &num_connectors);
   if (!connectors) {
     fprintf(stderr, "something went wrong with getting connectors - generation failed");
     return grid;
@@ -34,12 +40,7 @@ bool generateDungeon(Grid* grid, int width, int height, int placeTries, int addi
       connector = &connectors[uniform_distribution(0, (int)num_connectors)];
     } while (connector->used);
 
-    Position fill = {
-      .region = -1,
-      .tile = DOOR,
-    };
-
-    grid->data[connector->y][connector->x] = fill;
+    grid->data[connector->y][connector->x] = DOOR;
 
     int num_regions;
     int* regions = mapMergedRegions(connector, merged, &num_regions);
@@ -63,6 +64,7 @@ bool generateDungeon(Grid* grid, int width, int height, int placeTries, int addi
       }
     }
   }
+  freeRegions(regions, height);
   free(merged);
   free(connectors);
   remove_dead_ends(grid);

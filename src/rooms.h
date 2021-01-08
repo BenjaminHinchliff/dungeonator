@@ -21,7 +21,7 @@ extern "C" {
 #define ROOMS_ALLOC_SIZE 20
 #endif
 
-  bool placeRoomsInGrid(Grid* grid, int tries, int roomAddSize, int* region); 
+  bool placeRoomsInGrid(Grid* grid, regions_t regions, int tries, int roomAddSize, int* region);
 
 #ifdef __cplusplus
 }

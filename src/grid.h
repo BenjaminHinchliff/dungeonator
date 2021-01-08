@@ -19,16 +19,13 @@
 #ifdef __cplusplus
 extern "C" {
 #endif // __cplusplus
-  typedef struct Positions
-  {
-    Tile tile;
-    int region;
-  } Position;
 
   /**
   * the type for the 2d grid data
   */
-  typedef Position** maze_t;
+  typedef Tile** data_t;
+
+  typedef int** regions_t;
 
   /**
   * a struct to allow access to both the data and width/height of the grid in one param
@@ -45,7 +42,7 @@ extern "C" {
     /**
     * a pointer to the 2d grid data
     */
-    maze_t data;
+    data_t data;
   } Grid;
 
   /**
@@ -57,7 +54,9 @@ extern "C" {
   *
   * \return a 2d pointer to the array
   */
-  maze_t mallocGrid(int width, int height);
+  data_t mallocGrid(int width, int height);
+
+  regions_t mallocRegions(int width, int height);
 
   /**
   * fill a rectangle inside a grid with a boolean value
@@ -74,7 +73,10 @@ extern "C" {
   * since that creates unintuitive effects
   */
   void fillGrid(Grid* grid, int x1, int y1, int x2, int y2,
-    Position value);
+    Tile value);
+
+  void fillRegion(regions_t regions, int x1, int y1, int x2, int y2,
+    int value);
 
   /**
   * creates and returns a grid, initialized to be full of walls (true)
@@ -93,8 +95,6 @@ extern "C" {
   * \param[out] str the string to write the printed grid to
   * \param[in] bufsz the size of the output buffer, the function will only print part of the grid if it's not large enough
   * \param[in] grid the grid to print
-  * 
-  * \todo remove duplicate implementation with printGrid(Grid* grid) if possible
   */
   void printGridToString(char* str, size_t bufsz, Grid* grid);
 
@@ -105,7 +105,7 @@ extern "C" {
   */
   void printGrid(Grid* grid);
 
-  void debugPrintGrid(Grid* grid);
+  void debugPrintGrid(Grid* grid, regions_t regions);
   
   /**
   * free the memory to a grid
@@ -115,6 +115,8 @@ extern "C" {
   * using a grid after this point is undefined behavior
   */
   void freeGrid(Grid* grid);
+
+  void freeRegions(regions_t regions, int height);
 
 #ifdef __cplusplus
 }

@@ -1,6 +1,6 @@
 #include "connectors.h"
 
-Connector* getConnectors(Grid* grid, size_t* num_connectors) {
+Connector* getConnectors(Grid* grid, regions_t regions, size_t* num_connectors) {
   Connector* connectors = malloc(sizeof(Connector) * CONNECTOR_ALLOC_SIZE);
   if (!connectors) {
     fprintf(stderr, "failed to allocate connectors array");
@@ -19,9 +19,9 @@ Connector* getConnectors(Grid* grid, size_t* num_connectors) {
       for (int i = 0; i < NUM_DIRECTIONS; ++i) {
         int dx, dy;
         directionToDelta(CARDINAL[i], &dx, &dy);
-        Position* pos = &grid->data[y + dy][x + dx];
-        if (pos->region != -1 && !contains(connector.regions, 0, connector.num_regions, pos->region)) {
-          connector.regions[connector.num_regions++] = pos->region;
+        int region = regions[y + dy][x + dx];
+        if (region != -1 && !contains(connector.regions, 0, connector.num_regions, region)) {
+          connector.regions[connector.num_regions++] = region;
         }
       }
 

@@ -5,7 +5,7 @@ bool isOverlapping(Room* roomA, Room* roomB) {
     roomA->y1 < roomB->y2&& roomB->y2 > roomB->y1;
 }
 
-bool placeRoomsInGrid(Grid* grid, int tries, int roomAddSize, int* region) {
+bool placeRoomsInGrid(Grid* grid, regions_t regions, int tries, int roomAddSize, int* region) {
   Room *rooms = malloc(sizeof(Room) * ROOMS_ALLOC_SIZE);
   if (rooms == NULL) {
     fprintf(stderr, "failed to allocate rooms array");
@@ -53,12 +53,8 @@ bool placeRoomsInGrid(Grid* grid, int tries, int roomAddSize, int* region) {
     }
 
     if (!overlap) {
-      const Position position = {
-      .tile = FLOOR,
-      .region = (*region)++,
-      };
-
-      fillGrid(grid, room.x1, room.y1, room.x2, room.y2, position);
+      fillGrid(grid, room.x1, room.y1, room.x2, room.y2, FLOOR);
+      fillRegion(regions, room.x1, room.y1, room.x2, room.y2, (*region)++);
       rooms[room_num++] = room;
     }
   }

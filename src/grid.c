@@ -1,30 +1,51 @@
 #include "grid.h"
 
-maze_t mallocGrid(int width, int height) {
-  maze_t maze = malloc(sizeof(Position*) * height);
-  if (maze == NULL) {
-    fprintf(stderr, "failed to allocate outer memory for grid");
+void** malloc2d(int width, int height, size_t emntsize) {
+  void** arr = malloc(sizeof(void*) * height);
+  if (arr == NULL) {
+    fprintf(stderr, "outer memory alloc failed");
     return NULL;
   }
   for (int y = 0; y < height; ++y) {
-    maze[y] = malloc(sizeof(Position) * width);
-    if (maze[y] == NULL) {
+    arr[y] = malloc(emntsize * width);
+    if (arr[y] == NULL) {
       fprintf(stderr, "failed to allocate inner memory for grid");
       return NULL;
     }
   }
-  return maze;
+  return arr;
 }
 
-void fillGrid(Grid* maze, int x1, int y1, int x2, int y2, Position value) {
+data_t mallocGrid(int width, int height) {
+  return malloc2d(width, height, sizeof(Tile));
+}
+
+regions_t mallocRegions(int width, int height) {
+  return malloc2d(width, height, sizeof(int));
+}
+
+void fillGrid(Grid* grid, int x1, int y1, int x2, int y2,
+  Tile value) {
 #ifndef NDEBUG
   assert(x1 < x2&& y1 < y2 && "start x & y must be less than end x & y");
-  assert(x2 <= maze->width && y2 <= maze->height &&
+  assert(x2 <= grid->width && y2 <= grid->height &&
     "must be smaller than board");
 #endif // !NDEBUG
   for (int y = y1; y < y2; ++y) {
     for (int x = x1; x < x2; ++x) {
-      maze->data[y][x] = value;
+      grid->data[y][x] = value;
+    }
+  }
+}
+
+void fillRegion(regions_t regions, int x1, int y1, int x2, int y2,
+  int value) {
+#ifndef NDEBUG
+  assert(x1 < x2&& y1 < y2 && "start x & y must be less than end x & y");
+#endif // !NDEBUG
+  for (int y = y1; y < y2; ++y) {
+    for (int x = x1; x < x2; ++x) {
+      regions[y][x] = value;
     }
   }
 }
@@ -35,7 +56,7 @@ bool createGrid(int width, int height, Grid* grid) {
     "width and height must be odd for mazes");
   assert(width >= 3 && height >= 3 && "grid must be at least 3 by 3");
 #endif // !NDEBUG
-  maze_t data = mallocGrid(width, height);
+  data_t data = mallocGrid(width, height);
   if (data == NULL) {
     fprintf(stderr, "Failed to malloc grid");
     return false;
@@ -46,11 +67,7 @@ bool createGrid(int width, int height, Grid* grid) {
     .data = data
   };
 
-  Position fill = {
-    .region = -1,
-    .tile = WALL,
-  };
-  fillGrid(grid, 0, 0, grid->width, grid->height, fill);
+  fillGrid(grid, 0, 0, grid->width, grid->height, WALL);
   return grid;
 }
 
@@ -63,7 +80,7 @@ void printGridToString(char* str, size_t bufsz, Grid* maze) {
   for (int y = 0; y < maze->height; ++y) {
     for (int x = 0; x < maze->width; ++x) {
       char tileStr[2];
-      sprintf(tileStr, "%c", getCharacterForTile(maze->data[y][x].tile));
+      sprintf(tileStr, "%c", getCharacterForTile(maze->data[y][x]));
       strncat(str, tileStr, bufsz);
       if (--bufsz == 0)
         return;
@@ -77,13 +94,13 @@ void printGridToString(char* str, size_t bufsz, Grid* maze) {
 void printGrid(Grid* maze) {
   for (int y = 0; y < maze->height; ++y) {
     for (int x = 0; x < maze->width; ++x) {
-      printf("%c", getCharacterForTile(maze->data[y][x].tile));
+      printf("%c", getCharacterForTile(maze->data[y][x]));
     }
     printf("\n");
   }
 }
 
-void debugPrintGrid(Grid* grid) {
+void debugPrintGrid(Grid* grid, regions_t regions) {
   printf("   ");
   for (int x = 0; x < grid->width; ++x) {
     printf("%2d", x);
@@ -92,12 +109,12 @@ void debugPrintGrid(Grid* grid) {
   for (int y = 0; y < grid->height; ++y) {
     printf("%2d ", y);
     for (int x = 0; x < grid->width; ++x) {
-      Position* pos = &grid->data[y][x];
-      if (pos->tile == FLOOR) {
-        printf("%2X", pos->region);
+      Tile tile = grid->data[y][x];
+      if (tile == FLOOR) {
+        printf("%2X", regions[y][x]);
       }
       else {
-        char c = getCharacterForTile(grid->data[y][x].tile);
+        char c = getCharacterForTile(tile);
         printf("%c%c", c, c);
       }
     }
@@ -106,9 +123,17 @@ void debugPrintGrid(Grid* grid) {
   printf("---------------\n");
 }
 
-void freeGrid(Grid* maze) {
-  for (int y = 0; y < maze->height; ++y) {
-    free(maze->data[y]);
+void free2d(void** arr, int height) {
+  for (int y = 0; y < height; ++y) {
+    free(arr[y]);
   }
-  free(maze->data);
+  free(arr);
+}
+
+void freeGrid(Grid* maze) {
+  free2d(maze->data, maze->height);
+}
+
+void freeRegions(regions_t regions, int height) {
+  free2d(regions, height);
 }

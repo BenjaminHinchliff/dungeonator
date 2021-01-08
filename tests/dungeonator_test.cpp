@@ -9,7 +9,8 @@ TEST_CASE("maze generation works", "[maze]") {
   if (!success) {
     throw std::runtime_error("failed to create grid");
   }
-  backtrackMaze(&maze, 1, 1, 0);
+  regions_t regions = mallocRegions(51, 27);
+  backtrackMaze(&maze, regions, 1, 1, 0);
   char buffer[2048];
   printGridToString(buffer, 2048, &maze);
   ApprovalTests::Approvals::verify(buffer);
@@ -36,8 +37,9 @@ TEST_CASE("room placing works", "[rooms]") {
   if (!success) {
     throw std::runtime_error("failed to create grid");
   }
+  regions_t regions = mallocRegions(51, 27);
   int region = 0;
-  placeRoomsInGrid(&grid, 1000, 2, &region);
+  placeRoomsInGrid(&grid, regions, 1000, 2, &region);
   char buffer[2048];
   printGridToString(buffer, 2048, &grid);
   ApprovalTests::Approvals::verify(buffer);

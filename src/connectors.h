@@ -22,7 +22,7 @@ typedef struct Connectors
 #define CONNECTOR_ALLOC_SIZE 50
 #endif // !CONNECTOR_ALLOC_SIZE
 
-Connector* getConnectors(Grid* grid, size_t* num_connectors);
+Connector* getConnectors(Grid* grid, regions_t regions, size_t* num_connectors);
 int* mapMergedRegions(Connector* connector, int* merged, int* num_regions);
 
 #ifdef __cplusplus
