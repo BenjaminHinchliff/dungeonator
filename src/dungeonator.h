@@ -14,35 +14,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "grid.h"
 #include "direction.h"
+#include "grid.h"
 #include "maze.h"
-
-#ifdef __cplusplus
-extern "C" {
-#endif // __cplusplus
-
-  typedef struct Rooms {
-    int x1;
-    int y1;
-    int x2;
-    int y2;
-  } Room;
-
-  bool isOverlapping(Room* A, Room* B);
-
-#ifndef MAX_ROOMS
-#define MAX_ROOMS 50
-#endif
-
-  void placeRoomsInGrid(Grid* grid, int tries, int roomAddSize, int* region);
-
-#define MAX_REGIONS MAX_ROOMS + 1
-
-  Grid generateDungeon(int width, int height, int placeTries, int additionalRoomSize);
-
-#ifdef __cplusplus
-}
-#endif // __cplusplus
+#include "rooms.h"
+#include "generate.h"
 
 #endif // !DUNGEONATOR_H

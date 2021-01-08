@@ -1,16 +1,5 @@
 #include "maze.h"
 
-void shuffleDirections(Direction* array, int n) {
-  if (n > 1) {
-    for (int i = 0; i < n - 1; i++) {
-      int j = i + rand() / (RAND_MAX / (n - i) + 1);
-      Direction t = array[j];
-      array[j] = array[i];
-      array[i] = t;
-    }
-  }
-}
-
 bool isWall(Position* position) {
   return position->tile == WALL;
 }
