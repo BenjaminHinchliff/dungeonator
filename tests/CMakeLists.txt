@@ -29,6 +29,8 @@ FetchContent_Declare(
 
 set(FETCHCONTENT_QUIET OFF)
 FetchContent_MakeAvailable(ApprovalTests)
+# https://github.com/approvals/ApprovalTests.cpp/blob/master/doc/TroubleshootingMisconfiguredBuild.md#ninja-generator
+set_target_properties(ApprovalTests PROPERTIES UNITY_BUILD ON)
 
 add_executable(tests "main.cpp" "dungeonator_test.cpp")
 target_link_libraries(tests PUBLIC Catch2::Catch2 ApprovalTests::ApprovalTests ${PROJECT_NAME})
