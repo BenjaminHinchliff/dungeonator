@@ -18,5 +18,5 @@ to be bound to basically every language that exists, if one so chooses.
 - [X] fix crashing on malloc errors (I was lazy)
 - [ ] documentation (using Doxygen)
 - [ ] complete README
-- [ ] bundled alternative to `rand()` so tests are less brittle
+- [X] bundled alternative to `rand()` so tests are less brittle
 - [ ] rust bindings
