@@ -17,7 +17,9 @@ typedef struct Connectors
   bool used;
 } Connector;
 
+#ifndef CONNECTOR_ALLOC_SIZE
 #define CONNECTOR_ALLOC_SIZE 50
+#endif // !CONNECTOR_ALLOC_SIZE
 
 Connector* getConnectors(Grid* grid, size_t* num_connectors);
 int* mapMergedRegions(Connector* connector, int* merged, int* num_regions);
