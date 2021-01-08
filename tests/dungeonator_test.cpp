@@ -47,7 +47,7 @@ TEST_CASE("room placing works", "[rooms]") {
 TEST_CASE("dungeon generation works", "[rooms]") {
   pcg32_srandom(42u, 54u);
   Grid grid;
-  bool success = generateDungeon(51, 27, 1000, 2, &grid);
+  bool success = generateDungeon(&grid, 51, 27, 1000, 2);
   if (!success) {
     throw std::runtime_error("failed to generate dungeon");
   }

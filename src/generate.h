@@ -11,7 +11,7 @@
 extern "C" {
 #endif // __cplusplus
 
-  bool generateDungeon(int width, int height, int placeTries, int additionalRoomSize, Grid* grid);
+  bool generateDungeon(Grid* grid, int width, int height, int placeTries, int additionalRoomSize);
 
 #ifdef __cplusplus
 }

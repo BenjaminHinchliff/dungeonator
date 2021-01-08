@@ -11,7 +11,7 @@ bool contains(int* arr, size_t start, size_t end, int element) {
   return false;
 }
 
-bool generateDungeon(int width, int height, int placeTries, int additionalRoomSize, Grid *grid) {
+bool generateDungeon(Grid* grid, int width, int height, int placeTries, int additionalRoomSize) {
   int region = 0;
 
   bool success = createGrid(width, height, grid);
