@@ -14,8 +14,8 @@ to be bound to basically every language that exists, if one so chooses.
 - [X] spanning tree generation (door placement)
 - [ ] dead-end cleanup
 - [X] approval testing
-- [ ] code cleanup for room placement and generation logic
-- [ ] fix crashing on malloc errors (I was lazy)
+- [X] code cleanup for room placement and generation logic
+- [X] fix crashing on malloc errors (I was lazy)
 - [ ] documentation (using Doxygen)
 - [ ] complete README
 - [ ] bundled alternative to `rand()` so tests are less brittle
