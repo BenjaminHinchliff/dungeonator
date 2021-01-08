@@ -39,7 +39,6 @@ TEST_CASE("room placing works", "[rooms]") {
 TEST_CASE("dungeon generation works", "[rooms]") {
   srand(42);
   Grid grid = generateDungeon(51, 27, 1000, 2);
-  printGrid(&grid);
   char buffer[2048];
   printGridToString(buffer, 2048, &grid);
   ApprovalTests::Approvals::verify(buffer);

@@ -4,6 +4,7 @@
 #include "grid.h"
 #include "rooms.h"
 #include "maze.h"
+#include "connectors.h"
 
 #ifdef __cplusplus
 extern "C" {

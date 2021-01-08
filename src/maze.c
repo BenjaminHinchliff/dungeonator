@@ -1,13 +1,14 @@
 #include "maze.h"
 
-bool isWall(Position* position) {
-  return position->tile == WALL;
-}
-
 bool noPassages(Grid* maze, int nx, int ny) {
-  maze_t data = maze->data;
-  return isWall(&data[ny - 1][nx]) && isWall(&data[ny][nx + 1]) && isWall(&data[ny + 1][nx]) &&
-    isWall(&data[ny][nx - 1]);
+  for (int i = 0; i < NUM_DIRECTIONS; ++i) {
+    int dx, dy;
+    directionToDelta(CARDINAL[i], &dx, &dy);
+    if (maze->data[ny + dy][nx + dx].tile != WALL) {
+      return false;
+    }
+  }
+  return true;
 }
 
 void backtrackMaze(Grid* maze, int x, int y, int region) {

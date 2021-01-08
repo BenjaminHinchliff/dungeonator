@@ -7,7 +7,8 @@ set(DUNGEONATOR_SRCS
 	"rooms.c"
 	"random.c"
 	"generate.c"
-	"tile.c")
+	"tile.c"
+	"connectors.c")
 
 set(DUNGEONATOR_HDRS
 	"dungeonator.h"
@@ -17,7 +18,8 @@ set(DUNGEONATOR_HDRS
 	"rooms.h"
 	"random.h"
 	"generate.h"
-	"tile.h")
+	"tile.h"
+	"connectors.h")
 
 add_library(${PROJECT_NAME} ${DUNGEONATOR_SRCS} ${DUNGEONATOR_HDRS})
 target_include_directories(${PROJECT_NAME} PUBLIC ".")

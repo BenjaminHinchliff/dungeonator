@@ -1,15 +1,6 @@
 #include "generate.h"
 
-typedef struct Connectors
-{
-  int regions[4];
-  int num_regions;
-  int x;
-  int y;
-  bool used;
-} Connector;
 
-#define CONNECTOR_ALLOC_SIZE 100
 
 bool contains(int* arr, size_t start, size_t end, int element) {
   for (size_t i = start; i < end; ++i) {
@@ -18,61 +9,6 @@ bool contains(int* arr, size_t start, size_t end, int element) {
     }
   }
   return false;
-}
-
-Connector* getConnectors(Grid* grid, size_t* num_connectors) {
-  Connector* connectors = malloc(sizeof(Connector) * CONNECTOR_ALLOC_SIZE);
-  if (!connectors) {
-    fprintf(stderr, "failed to allocate connectors array");
-    return NULL;
-  }
-  size_t reserved_connectors = CONNECTOR_ALLOC_SIZE;
-  *num_connectors = 0;
-  for (int y = 1; y < grid->height - 1; ++y) {
-    for (int x = 1; x < grid->width - 1; ++x) {
-      Connector connector = {
-        .num_regions = 0,
-        .x = x,
-        .y = y,
-        .used = false,
-      };
-      for (int i = 0; i < NUM_DIRECTIONS; ++i) {
-        int dx, dy;
-        directionToDelta(CARDINAL[i], &dx, &dy);
-        Position* pos = &grid->data[y + dy][x + dx];
-        if (pos->region != -1 && !contains(connector.regions, 0, connector.num_regions, pos->region)) {
-          connector.regions[connector.num_regions++] = pos->region;
-        }
-      }
-
-      if (connector.num_regions > 1) {
-        if (*num_connectors == reserved_connectors) {
-          Connector* newConnectors = realloc(connectors, sizeof(Connector) * (reserved_connectors += CONNECTOR_ALLOC_SIZE));
-          if (!newConnectors) {
-            fprintf(stderr, "failed to reallocate connectors array");
-            free(connectors);
-            return NULL;
-          }
-          connectors = newConnectors;
-        }
-        connectors[(*num_connectors)++] = connector;
-      }
-    }
-  }
-  return connectors;
-}
-
-int* mapMergedRegions(Connector* connector, int* merged, int* num_regions) {
-  // map together merged regions while deduplicating array
-  static int regions[4];
-  *num_regions = 0;
-  for (int i = 0; i < connector->num_regions; ++i) {
-    int region = merged[connector->regions[i]];
-    if (!contains(regions, 0, *num_regions, region)) {
-      regions[(*num_regions)++] = region;
-    }
-  }
-  return regions;
 }
 
 Grid generateDungeon(int width, int height, int placeTries, int additionalRoomSize) {
