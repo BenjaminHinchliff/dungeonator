@@ -2,11 +2,14 @@
 
 project("dungeonator")
 
+set(CMAKE_UNITY_BUILD YES)
+
 option(BUILD_TESTS "Build tests" ON)
 option(BUILD_DOCS "Build doxygen docs" ON)
 
 add_subdirectory("src")
 if(BUILD_TESTS)
+	enable_testing()
 	add_subdirectory("tests")
 endif()
 if(BUILD_DOCS)
