@@ -12,5 +12,8 @@ void shuffleDirections(Direction* array, int n) {
 }
 
 int uniform_distribution(int rangeLow, int rangeHigh) {
-  return rangeLow + pcg32_boundedrand(rangeHigh);
+#ifndef NDEBUG
+  assert(rangeLow < rangeHigh && "lower part must be lower");
+#endif // !NDEBUG
+  return rangeLow + pcg32_boundedrand(rangeHigh - rangeLow);
 }
