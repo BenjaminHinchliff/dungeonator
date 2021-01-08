@@ -14,15 +14,11 @@
 #include <assert.h>
 #include <string.h>
 
+#include "tile.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif // __cplusplus
-  typedef enum Tiles {
-    WALL,
-    FLOOR,
-    DOOR,
-  } Tile;
-
   typedef struct Positions
   {
     Tile tile;

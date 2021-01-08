@@ -45,14 +45,16 @@ Grid createGrid(int width, int height) {
 }
 
 void printGridToString(char* str, size_t bufsz, Grid* maze) {
-  if (bufsz > 0) {
+  if (bufsz > 1) {
     str[0] = '\0';
     --bufsz;
   }
 
   for (int y = 0; y < maze->height; ++y) {
     for (int x = 0; x < maze->width; ++x) {
-      strncat(str, maze->data[y][x].tile == WALL ? "#" : ".", bufsz);
+      char tileStr[2];
+      sprintf(tileStr, "%c", getCharacterForTile(maze->data[y][x].tile));
+      strncat(str, tileStr, bufsz);
       if (--bufsz == 0)
         return;
     }
@@ -65,16 +67,7 @@ void printGridToString(char* str, size_t bufsz, Grid* maze) {
 void printGrid(Grid* maze) {
   for (int y = 0; y < maze->height; ++y) {
     for (int x = 0; x < maze->width; ++x) {
-      Position* pos = &maze->data[y][x];
-      if (pos->tile == WALL) {
-        printf("#");
-      }
-      else if (pos->region != -1) {
-        printf("%x", pos->region);
-      }
-      else {
-        printf(".");
-      }
+      printf("%c", getCharacterForTile(maze->data[y][x].tile));
     }
     printf("\n");
   }
