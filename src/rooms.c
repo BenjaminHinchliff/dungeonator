@@ -27,7 +27,7 @@ bool placeRoomsInGrid(Grid* grid, int tries, int roomAddSize, int* region) {
     int rectangularity = uniform_distribution(0, 1 + size / 2) * 2;
     int width = size;
     int height = size;
-    if (rand() % 2 == 0) {
+    if (uniform_distribution(0, 2) == 0) {
       width += rectangularity;
     }
     else {
