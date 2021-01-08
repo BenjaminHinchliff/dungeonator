@@ -3,6 +3,7 @@
 
 #include "grid.h"
 #include "direction.h"
+#include "util.h"
 
 #ifdef __cplusplus
 extern "C" {

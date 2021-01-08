@@ -1,7 +1,7 @@
 #ifndef ROOMS_H
 #define ROOMS_H
 
-#include "random.h"
+#include "util.h"
 #include "grid.h"
 
 #ifdef __cplusplus

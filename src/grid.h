@@ -104,6 +104,8 @@ extern "C" {
   * \param[in] grid the grid to print
   */
   void printGrid(Grid* grid);
+
+  void debugPrintGrid(Grid* grid);
   
   /**
   * free the memory to a grid

@@ -83,6 +83,29 @@ void printGrid(Grid* maze) {
   }
 }
 
+void debugPrintGrid(Grid* grid) {
+  printf("   ");
+  for (int x = 0; x < grid->width; ++x) {
+    printf("%2d", x);
+  }
+  printf("\n");
+  for (int y = 0; y < grid->height; ++y) {
+    printf("%2d ", y);
+    for (int x = 0; x < grid->width; ++x) {
+      Position* pos = &grid->data[y][x];
+      if (pos->tile == FLOOR) {
+        printf("%2X", pos->region);
+      }
+      else {
+        char c = getCharacterForTile(grid->data[y][x].tile);
+        printf("%c%c", c, c);
+      }
+    }
+    printf("\n");
+  }
+  printf("---------------\n");
+}
+
 void freeGrid(Grid* maze) {
   for (int y = 0; y < maze->height; ++y) {
     free(maze->data[y]);

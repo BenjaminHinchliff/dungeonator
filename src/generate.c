@@ -1,16 +1,5 @@
 #include "generate.h"
 
-
-
-bool contains(int* arr, size_t start, size_t end, int element) {
-  for (size_t i = start; i < end; ++i) {
-    if (arr[i] == element) {
-      return true;
-    }
-  }
-  return false;
-}
-
 bool generateDungeon(Grid* grid, int width, int height, int placeTries, int additionalRoomSize) {
   int region = 0;
 
@@ -27,6 +16,7 @@ bool generateDungeon(Grid* grid, int width, int height, int placeTries, int addi
       }
     }
   }
+
   size_t num_connectors;
   Connector* connectors = getConnectors(grid, &num_connectors);
   if (!connectors) {

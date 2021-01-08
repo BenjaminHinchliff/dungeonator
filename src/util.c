@@ -1,4 +1,13 @@
-#include "random.h"
+#include "util.h"
+
+bool contains(int* arr, size_t start, size_t end, int element) {
+  for (size_t i = start; i < end; ++i) {
+    if (arr[i] == element) {
+      return true;
+    }
+  }
+  return false;
+}
 
 void shuffleDirections(Direction* array, int n) {
   if (n > 1) {

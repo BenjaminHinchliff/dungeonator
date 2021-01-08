@@ -2,6 +2,7 @@
 #define RANDOM_H
 
 #include <stdlib.h>
+#include <stdbool.h>
 
 #include "pcg_basic.h"
 
@@ -10,6 +11,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif // __cplusplus
+
+  bool contains(int* arr, size_t start, size_t end, int element);
 
   void shuffleDirections(Direction* array, int n);
 

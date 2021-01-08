@@ -10,7 +10,7 @@
 
 #include "direction.h"
 #include "grid.h"
-#include "random.h"
+#include "util.h"
 
 #ifdef __cplusplus
 extern "C" {
