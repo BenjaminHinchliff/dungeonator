@@ -75,5 +75,6 @@ bool generateDungeon(int width, int height, int placeTries, int additionalRoomSi
   }
   free(merged);
   free(connectors);
+  remove_dead_ends(grid);
   return grid;
 }

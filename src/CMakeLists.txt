@@ -24,7 +24,8 @@ set(DUNGEONATOR_SRCS
 	"random.c"
 	"generate.c"
 	"tile.c"
-	"connectors.c")
+	"connectors.c"
+	"dead_ends.c")
 
 set(DUNGEONATOR_HDRS
 	"dungeonator.h"
@@ -35,7 +36,8 @@ set(DUNGEONATOR_HDRS
 	"random.h"
 	"generate.h"
 	"tile.h"
-	"connectors.h")
+	"connectors.h"
+	"dead_ends.h")
 
 add_library(${PROJECT_NAME} ${DUNGEONATOR_SRCS} ${DUNGEONATOR_HDRS})
 target_include_directories(${PROJECT_NAME} PUBLIC ".")

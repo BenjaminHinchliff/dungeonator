@@ -5,6 +5,7 @@
 #include "rooms.h"
 #include "maze.h"
 #include "connectors.h"
+#include "dead_ends.h"
 
 #ifdef __cplusplus
 extern "C" {

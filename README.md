@@ -12,7 +12,7 @@ to be bound to basically every language that exists, if one so chooses.
 - [X] room placement
 - [X] maze generation (recursive backtracking)
 - [X] spanning tree generation (door placement)
-- [ ] dead-end cleanup
+- [X] dead-end cleanup
 - [X] approval testing
 - [X] code cleanup for room placement and generation logic
 - [X] fix crashing on malloc errors (I was lazy)
