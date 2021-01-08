@@ -5,8 +5,10 @@
 ## About
 
 This is a small C library designed for people who just want procedural rouguelike dungeon generation,
-and don't want to have to go through the trouble of doing it themselves. It's written in pure ANSI C to allow it
+and don't want to have to go through the trouble of doing it themselves. It's written in pure C99 to allow it
 to be bound to basically every language that exists, if one so chooses.
+
+The algorithm used is a variant of the one described [here](https://journal.stuffwithstuff.com/2014/12/21/rooms-and-mazes/).
 
 ## Completion Status:
 - [X] room placement
