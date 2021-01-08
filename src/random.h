@@ -3,6 +3,8 @@
 
 #include <stdlib.h>
 
+#include "pcg_basic.h"
+
 #include "direction.h"
 
 #ifdef __cplusplus

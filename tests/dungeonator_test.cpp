@@ -3,7 +3,7 @@
 #include "dungeonator.h"
 
 TEST_CASE("maze generation works", "[maze]") {
-  srand(42);
+  pcg32_srandom(42u, 54u);
   Grid maze;
   bool success = createGrid(51, 27, &maze);
   if (!success) {
@@ -30,7 +30,7 @@ TEST_CASE("rooms correctly overlap", "[rooms]") {
 }
 
 TEST_CASE("room placing works", "[rooms]") {
-  srand(42);
+  pcg32_srandom(42u, 54u);
   Grid grid;
   bool success = createGrid(51, 27, &grid);
   if (!success) {
@@ -45,7 +45,7 @@ TEST_CASE("room placing works", "[rooms]") {
 }
 
 TEST_CASE("dungeon generation works", "[rooms]") {
-  srand(42);
+  pcg32_srandom(42u, 54u);
   Grid grid;
   bool success = generateDungeon(51, 27, 1000, 2, &grid);
   if (!success) {

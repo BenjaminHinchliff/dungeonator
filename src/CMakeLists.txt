@@ -1,5 +1,21 @@
 ﻿cmake_minimum_required(VERSION 3.11)
 
+# get mersenne twister rng
+include(FetchContent)
+
+FetchContent_Declare(
+	pcg_fetch
+	GIT_REPOSITORY https://github.com/imneme/pcg-c-basic.git
+)
+
+FetchContent_GetProperties(pcg_fetch)
+if(NOT pcg_fetch_POPULATED)
+	set(FETCHCONTENT_QUIET OFF)
+	FetchContent_Populate(pcg_fetch)
+	add_library(pcg STATIC "${pcg_fetch_SOURCE_DIR}/pcg_basic.c")
+	target_include_directories(pcg PUBLIC "${pcg_fetch_SOURCE_DIR}")
+endif()
+
 set(DUNGEONATOR_SRCS
 	"grid.c"
 	"direction.c"
@@ -23,3 +39,4 @@ set(DUNGEONATOR_HDRS
 
 add_library(${PROJECT_NAME} ${DUNGEONATOR_SRCS} ${DUNGEONATOR_HDRS})
 target_include_directories(${PROJECT_NAME} PUBLIC ".")
+target_link_libraries(${PROJECT_NAME} PUBLIC pcg)
