@@ -25,7 +25,7 @@ extern "C" {
   * \warning can cause stack overflow if a grid is too large
   * \todo create stack based implementation to prevent this problem?
   */
-  void backtrackMaze(Grid* grid, int x, int y);
+  void backtrackMaze(Grid* grid, int x, int y, int region);
 
 #ifdef __cplusplus
 }

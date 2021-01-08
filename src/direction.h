@@ -25,6 +25,8 @@ extern "C" {
     WEST,
   } Direction;
 
+  extern const Direction CARDINAL[NUM_DIRECTIONS];
+
   /**
   * convert the direction enum to a change in x and y, normalized, for use by the backtracking algorithm.
   *

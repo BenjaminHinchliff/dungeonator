@@ -31,7 +31,15 @@ extern "C" {
 
   bool isOverlapping(Room* A, Room* B);
 
-  void placeRoomsInGrid(Grid* grid, int tries, int roomAddSize);
+#ifndef MAX_ROOMS
+#define MAX_ROOMS 50
+#endif
+
+  void placeRoomsInGrid(Grid* grid, int tries, int roomAddSize, int* region);
+
+#define MAX_REGIONS MAX_ROOMS + 1
+
+  Grid generateDungeon(int width, int height, int placeTries, int additionalRoomSize);
 
 #ifdef __cplusplus
 }

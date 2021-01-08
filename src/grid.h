@@ -12,15 +12,27 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>
+#include <string.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif // __cplusplus
+  typedef enum Tiles {
+    WALL,
+    FLOOR,
+    DOOR,
+  } Tile;
+
+  typedef struct Positions
+  {
+    Tile tile;
+    int region;
+  } Position;
 
   /**
   * the type for the 2d grid data
   */
-  typedef bool** maze_t;
+  typedef Position** maze_t;
 
   /**
   * a struct to allow access to both the data and width/height of the grid in one param
@@ -66,7 +78,7 @@ extern "C" {
   * since that creates unintuitive effects
   */
   void fillGrid(Grid* grid, int x1, int y1, int x2, int y2,
-    bool value);
+    Position value);
 
   /**
   * creates and returns a grid, initialized to be full of walls (true)

@@ -1,5 +1,7 @@
 #include "direction.h"
 
+const Direction CARDINAL[NUM_DIRECTIONS] = { NORTH, EAST, SOUTH, WEST };
+
 void directionToDelta(Direction direction, int* dx, int* dy) {
 #ifndef NDEBUG
   assert(dx != NULL && dy != NULL && "output variables can't be NULL");

@@ -11,13 +11,17 @@ void shuffleDirections(Direction* array, int n) {
   }
 }
 
-bool noPassages(Grid* maze, int nx, int ny) {
-  maze_t data = maze->data;
-  return data[ny - 1][nx] && data[ny][nx + 1] && data[ny + 1][nx] &&
-    data[ny][nx - 1];
+bool isWall(Position* position) {
+  return position->tile == WALL;
 }
 
-void backtrackMaze(Grid* maze, int x, int y) {
+bool noPassages(Grid* maze, int nx, int ny) {
+  maze_t data = maze->data;
+  return isWall(&data[ny - 1][nx]) && isWall(&data[ny][nx + 1]) && isWall(&data[ny + 1][nx]) &&
+    isWall(&data[ny][nx - 1]);
+}
+
+void backtrackMaze(Grid* maze, int x, int y, int region) {
   Direction directions[NUM_DIRECTIONS] = { NORTH, EAST, SOUTH, WEST };
   shuffleDirections(directions, NUM_DIRECTIONS);
 
@@ -29,10 +33,14 @@ void backtrackMaze(Grid* maze, int x, int y) {
 
     if (nx >= 0 && nx < maze->width && ny >= 0 && ny < maze->height &&
       noPassages(maze, nx, ny)) {
-      maze->data[y][x] = false;
-      maze->data[y + dy][x + dx] = false;
-      maze->data[ny][nx] = false;
-      backtrackMaze(maze, nx, ny);
+      const Position fill = {
+        .region = region,
+        .tile = FLOOR,
+      };
+      maze->data[y][x] = fill;
+      maze->data[y + dy][x + dx] = fill;
+      maze->data[ny][nx] = fill;
+      backtrackMaze(maze, nx, ny, region);
     }
   }
 }
