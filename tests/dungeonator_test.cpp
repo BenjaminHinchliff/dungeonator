@@ -14,6 +14,7 @@ TEST_CASE("maze generation works", "[maze]") {
   char buffer[2048];
   printGridToString(buffer, 2048, &maze);
   ApprovalTests::Approvals::verify(buffer);
+  freeRegions(regions, 27);
   freeGrid(&maze);
 }
 
@@ -43,6 +44,7 @@ TEST_CASE("room placing works", "[rooms]") {
   char buffer[2048];
   printGridToString(buffer, 2048, &grid);
   ApprovalTests::Approvals::verify(buffer);
+  freeRegions(regions, 27);
   freeGrid(&grid);
 }
 
