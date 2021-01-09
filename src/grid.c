@@ -17,11 +17,11 @@ void** malloc2d(int width, int height, size_t emntsize) {
 }
 
 data_t mallocGrid(int width, int height) {
-  return malloc2d(width, height, sizeof(Tile));
+  return (data_t)malloc2d(width, height, sizeof(Tile));
 }
 
 regions_t mallocRegions(int width, int height) {
-  return malloc2d(width, height, sizeof(int));
+  return (regions_t)malloc2d(width, height, sizeof(int));
 }
 
 void fillGrid(Grid* grid, int x1, int y1, int x2, int y2,
