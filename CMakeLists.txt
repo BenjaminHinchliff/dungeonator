@@ -1,6 +1,10 @@
 ﻿cmake_minimum_required(VERSION 3.11)
 
-project("dungeonator")
+project("dungeonator"
+		VERSION 1.0.0
+		DESCRIPTION "A small C library designed for people who just want procedural roguelike dungeon generation"
+		HOMEPAGE_URL https://github.com/BenjaminHinchliff/dungeonator
+		LANGUAGES C CXX)
 
 option(BUILD_TESTS "Build tests" OFF)
 option(BUILD_DOCS "Build doxygen docs" OFF)

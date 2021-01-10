@@ -12,7 +12,8 @@ if (DOXYGEN_FOUND)
         COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}/Doxyfile
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
         COMMENT "Generating API documentation with Doxygen"
-        VERBATIM)
+        VERBATIM
+    )
 
     add_custom_command(TARGET doc_doxygen POST_BUILD 
         COMMAND ${CMAKE_COMMAND} -E copy_directory "${DOXYGEN_OUT}/html" "${DOXYGEN_IN}"
