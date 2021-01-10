@@ -18,7 +18,6 @@ The algorithm used is a variant of the one described [here](https://journal.stuf
 - [X] approval testing
 - [X] code cleanup for room placement and generation logic
 - [X] fix crashing on malloc errors (I was lazy)
-- [ ] documentation (using Doxygen)
+- [X] documentation (using Doxygen)
 - [ ] complete README
 - [X] bundled alternative to `rand()` so tests are less brittle
-- [ ] rust bindings
