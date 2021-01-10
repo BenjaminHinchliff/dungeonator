@@ -33,9 +33,9 @@ extern "C" {
   /**
   * get a character from the tile enum
   * 
-  * WALL -> '#'
-  * FLOOR -> '.'
-  * DOOR -> '+'
+  * * WALL -> '#'
+  * * FLOOR -> '.'
+  * * DOOR -> '+'
   * 
   * \param[in] tile the tile to get the character for 
   * 
