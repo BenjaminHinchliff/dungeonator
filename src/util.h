@@ -23,9 +23,9 @@ extern "C" {
   * time complexity O(n) (obviously)
   * 
   * \param[in] arr the array to check
-  * \param[in] the start index to check from
-  * \param[in] the end index to check to
-  * \param[in] the element to check for
+  * \param[in] start the start index to check from
+  * \param[in] end the end index to check to
+  * \param[in] element the element to check for
   * 
   * \returns whether the array contains the element
   */
@@ -34,7 +34,7 @@ extern "C" {
   /**
   * shuffle the array of directions
   * 
-  * \param[in,out] the array to shuffle
+  * \param[in,out] array the array to shuffle
   * \param[in] n the length of the array
   */
   void shuffleDirections(Direction* array, int n);

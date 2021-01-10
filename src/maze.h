@@ -20,13 +20,15 @@ extern "C" {
   * run recursive backtracking (aka depth-first search) on a grid to generate a maze
   * 
   * \param[in,out] grid the grid to run the algorithm on
+  * \param[in] regions the regions array
   * \param[in] x the starting x position for backtracking
   * \param[in] y the starting y position for backtracking
+  * \param[in] region the region of the maze
   * 
   * \warning can cause stack overflow if a grid is too large
   * \todo create stack based implementation to prevent this problem?
   */
-  void backtrackMaze(Grid* maze, regions_t regions, int x, int y, int region);
+  void backtrackMaze(Grid* grid, regions_t regions, int x, int y, int region);
 
 #ifdef __cplusplus
 }

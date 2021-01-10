@@ -111,7 +111,7 @@ extern "C" {
   *
   * \param[in] width the width of the grid
   * \param[in] height the height of the grid
-  * \param[out] the created grid
+  * \param[out] grid the created grid
   * 
   * \returns a boolean value indicating the success of the creation
   */
@@ -144,7 +144,7 @@ extern "C" {
   /**
   * free the memory to a grid
   * 
-  * \param[in] the grid to free
+  * \param[in] grid the grid to free
   * 
   * using a grid after this point is undefined behavior
   */
@@ -153,7 +153,8 @@ extern "C" {
   /**
   * free the memory to a regions grid
   *
-  * \param[in] the grid to free
+  * \param[in] regions the regions array to free
+  * \param[in] height the height of the regions array (get this right!)
   *
   * using a grid after this point is undefined behavior
   */

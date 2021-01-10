@@ -13,6 +13,9 @@
 extern "C" {
 #endif // __cplusplus
 
+/**
+* the number of directions in the enum
+*/
 #define NUM_DIRECTIONS 4
 
   /**
@@ -25,6 +28,9 @@ extern "C" {
     WEST,
   } Direction;
 
+  /**
+  * a constant array of cardinal directions
+  */
   extern const Direction CARDINAL[NUM_DIRECTIONS];
 
   /**

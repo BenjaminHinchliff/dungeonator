@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['backtrackmaze_76',['backtrackMaze',['../maze_8h.html#aaf9027f1e904e1189bcb07c7e65c29ec',1,'maze.c']]]
+  ['backtrackmaze_78',['backtrackMaze',['../maze_8h.html#a57bf309d428324194469c52992a41f57',1,'maze.c']]]
 ];

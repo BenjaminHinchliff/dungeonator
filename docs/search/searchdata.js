@@ -4,11 +4,11 @@ var indexSectionsWithContent =
   1: "cgr",
   2: "cdgmrtu",
   3: "bcdfgimprsu",
-  4: "dhnruwxy",
+  4: "cdhnruwxy",
   5: "cdgrt",
   6: "dt",
   7: "dfw",
-  8: "cr",
+  8: "cnr",
   9: "dt"
 };
 

@@ -84,15 +84,15 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aaf9027f1e904e1189bcb07c7e65c29ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="maze_8h.html#aaf9027f1e904e1189bcb07c7e65c29ec">backtrackMaze</a> (<a class="el" href="grid_8h.html#aee149cf2bb10bf25ef14ec16e0acf3b8">Grid</a> *maze, <a class="el" href="grid_8h.html#a06fe01f7914ab040e652ae56965faa68">regions_t</a> regions, int x, int y, int region)</td></tr>
-<tr class="separator:aaf9027f1e904e1189bcb07c7e65c29ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57bf309d428324194469c52992a41f57"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="maze_8h.html#a57bf309d428324194469c52992a41f57">backtrackMaze</a> (<a class="el" href="grid_8h.html#aee149cf2bb10bf25ef14ec16e0acf3b8">Grid</a> *grid, <a class="el" href="grid_8h.html#a06fe01f7914ab040e652ae56965faa68">regions_t</a> regions, int x, int y, int region)</td></tr>
+<tr class="separator:a57bf309d428324194469c52992a41f57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>the implementation file for maze generation code </p>
 <p>the implementation file for maze generation code, currently only implementing recursive backtracking </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="aaf9027f1e904e1189bcb07c7e65c29ec"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaf9027f1e904e1189bcb07c7e65c29ec">&#9670;&nbsp;</a></span>backtrackMaze()</h2>
+<a id="a57bf309d428324194469c52992a41f57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57bf309d428324194469c52992a41f57">&#9670;&nbsp;</a></span>backtrackMaze()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -101,7 +101,7 @@ Functions</h2></td></tr>
           <td class="memname">void backtrackMaze </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="grid_8h.html#aee149cf2bb10bf25ef14ec16e0acf3b8">Grid</a> *&#160;</td>
-          <td class="paramname"><em>maze</em>, </td>
+          <td class="paramname"><em>grid</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -138,8 +138,10 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in,out]</td><td class="paramname">grid</td><td>the grid to run the algorithm on </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">regions</td><td>the regions array </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>the starting x position for backtracking </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">y</td><td>the starting y position for backtracking</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">y</td><td>the starting y position for backtracking </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">region</td><td>the region of the maze</td></tr>
   </table>
   </dd>
 </dl>

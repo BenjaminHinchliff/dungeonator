@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['rooms_5falloc_5fsize_123',['ROOMS_ALLOC_SIZE',['../rooms_8h.html#a1a8ad28dde6ea3e7d7a135621ab5c76c',1,'rooms.h']]]
+  ['num_5fdirections_126',['NUM_DIRECTIONS',['../direction_8h.html#a394b4d9597382758840287dd52c17292',1,'direction.h']]]
 ];

@@ -59,7 +59,7 @@ extern "C" {
   * \param[in,out] regions the regions to place the rooms' regions onto
   * \param[in] tries the number of tries to places the rooms
   * \param[in] roomAddSize larger = bigger rooms
-  * \param[in,out] a pointer to the region counter to determine the current region - will be mutated
+  * \param[in,out] region a pointer to the region counter to determine the current region - will be mutated
   * 
   * \returns bool if the placing was successful (can fail on out of memory)
   */

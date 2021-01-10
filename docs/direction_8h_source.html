@@ -81,27 +81,29 @@ $(function() {
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// __cplusplus</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#define NUM_DIRECTIONS 4</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="direction_8h.html#a04f362029ec2a624fbcb7a30b20ff5f5">   21</a></span>&#160;  <span class="keyword">typedef</span> <span class="keyword">enum</span> <a class="code" href="direction_8h.html#a04f362029ec2a624fbcb7a30b20ff5f5">Directions</a> {</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    NORTH,</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    EAST,</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    SOUTH,</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    WEST,</div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="direction_8h.html#a000022139e4f61dff5717a241e243e81">   26</a></span>&#160;  } <a class="code" href="direction_8h.html#a000022139e4f61dff5717a241e243e81">Direction</a>;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <a class="code" href="direction_8h.html#a000022139e4f61dff5717a241e243e81">Direction</a> CARDINAL[NUM_DIRECTIONS];</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="direction_8h.html#a175211abe12ef0c8ca6e783e12c37276">directionToDelta</a>(<a class="code" href="direction_8h.html#a000022139e4f61dff5717a241e243e81">Direction</a> direction, <span class="keywordtype">int</span>* dx, <span class="keywordtype">int</span>* dy);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;}</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// __cplusplus</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// !DIRECTION_H</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="direction_8h.html#a394b4d9597382758840287dd52c17292">   19</a></span>&#160;<span class="preprocessor">#define NUM_DIRECTIONS 4</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="direction_8h.html#a04f362029ec2a624fbcb7a30b20ff5f5">   24</a></span>&#160;  <span class="keyword">typedef</span> <span class="keyword">enum</span> <a class="code" href="direction_8h.html#a04f362029ec2a624fbcb7a30b20ff5f5">Directions</a> {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    NORTH,</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    EAST,</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    SOUTH,</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    WEST,</div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="direction_8h.html#a000022139e4f61dff5717a241e243e81">   29</a></span>&#160;  } <a class="code" href="direction_8h.html#a000022139e4f61dff5717a241e243e81">Direction</a>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  <span class="keyword">extern</span> <span class="keyword">const</span> <a class="code" href="direction_8h.html#a000022139e4f61dff5717a241e243e81">Direction</a> <a class="code" href="direction_8h.html#a1de4f4f409bf9e70277ddc44888f9da4">CARDINAL</a>[<a class="code" href="direction_8h.html#a394b4d9597382758840287dd52c17292">NUM_DIRECTIONS</a>];</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="direction_8h.html#a175211abe12ef0c8ca6e783e12c37276">directionToDelta</a>(<a class="code" href="direction_8h.html#a000022139e4f61dff5717a241e243e81">Direction</a> direction, <span class="keywordtype">int</span>* dx, <span class="keywordtype">int</span>* dy);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;}</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// __cplusplus</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// !DIRECTION_H</span></div>
 <div class="ttc" id="adirection_8h_html_a000022139e4f61dff5717a241e243e81"><div class="ttname"><a href="direction_8h.html#a000022139e4f61dff5717a241e243e81">Direction</a></div><div class="ttdeci">enum Directions Direction</div></div>
-<div class="ttc" id="adirection_8h_html_a04f362029ec2a624fbcb7a30b20ff5f5"><div class="ttname"><a href="direction_8h.html#a04f362029ec2a624fbcb7a30b20ff5f5">Directions</a></div><div class="ttdeci">Directions</div><div class="ttdef"><b>Definition:</b> direction.h:21</div></div>
+<div class="ttc" id="adirection_8h_html_a04f362029ec2a624fbcb7a30b20ff5f5"><div class="ttname"><a href="direction_8h.html#a04f362029ec2a624fbcb7a30b20ff5f5">Directions</a></div><div class="ttdeci">Directions</div><div class="ttdef"><b>Definition:</b> direction.h:24</div></div>
 <div class="ttc" id="adirection_8h_html_a175211abe12ef0c8ca6e783e12c37276"><div class="ttname"><a href="direction_8h.html#a175211abe12ef0c8ca6e783e12c37276">directionToDelta</a></div><div class="ttdeci">void directionToDelta(Direction direction, int *dx, int *dy)</div><div class="ttdef"><b>Definition:</b> direction.c:5</div></div>
+<div class="ttc" id="adirection_8h_html_a1de4f4f409bf9e70277ddc44888f9da4"><div class="ttname"><a href="direction_8h.html#a1de4f4f409bf9e70277ddc44888f9da4">CARDINAL</a></div><div class="ttdeci">const Direction CARDINAL[NUM_DIRECTIONS]</div><div class="ttdef"><b>Definition:</b> direction.c:3</div></div>
+<div class="ttc" id="adirection_8h_html_a394b4d9597382758840287dd52c17292"><div class="ttname"><a href="direction_8h.html#a394b4d9597382758840287dd52c17292">NUM_DIRECTIONS</a></div><div class="ttdeci">#define NUM_DIRECTIONS</div><div class="ttdef"><b>Definition:</b> direction.h:19</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
