@@ -1,6 +1,11 @@
 #ifndef RANDOM_H
 #define RANDOM_H
 
+/**
+* \file util.h
+* \brief various utilities used thoughout the code
+*/
+
 #include <stdlib.h>
 #include <stdbool.h>
 

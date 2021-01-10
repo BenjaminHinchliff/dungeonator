@@ -1,6 +1,11 @@
 #ifndef TILE_H
 #define TILE_H
 
+/**
+* \file tile.h
+* \brief the include file for the potential tiles in a grid
+*/
+
 #include <stdio.h>
 
 #ifdef __cplusplus
