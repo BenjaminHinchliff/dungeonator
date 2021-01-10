@@ -7,7 +7,7 @@ option(BUILD_DOCS "Build doxygen docs" OFF)
 
 add_subdirectory("src")
 if(BUILD_TESTS)
-	if (NOT WIN32)
+	if (NOT WIN32 AND ${CMAKE_GENERATOR} STREQUAL "Ninja")
 		# https://github.com/approvals/ApprovalTests.cpp/blob/master/doc/TroubleshootingMisconfiguredBuild.md#ninja-generator
 		set(CMAKE_UNITY_BUILD ON)
 	endif()
