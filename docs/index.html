@@ -68,13 +68,40 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_C__Users_benja_source_repos_dungeonator_README"></a> </p><blockquote class="doxtable">
-<p>:warning: this project isn't totally ready at this point, but the bones are there </p>
+<p>:warning: everything is done now, but I still need to test cmake integration with other projects </p>
 </blockquote>
 <h1><a class="anchor" id="autotoc_md1"></a>
 About</h1>
 <p>This is a small C library designed for people who just want procedural rouguelike dungeon generation, and don't want to have to go through the trouble of doing it themselves. It's written in pure C99 to allow it to be bound to basically every language that exists, if one so chooses.</p>
 <p>The algorithm used is a variant of the one described <a href="https://journal.stuffwithstuff.com/2014/12/21/rooms-and-mazes/">here</a>.</p>
 <h1><a class="anchor" id="autotoc_md2"></a>
+Usage Example</h1>
+<div class="fragment"><div class="line"> {c++}</div>
+<div class="line">#include &quot;dungeonator.h&quot;</div>
+<div class="line"> </div>
+<div class="line">int main() {</div>
+<div class="line">  // the random generator must be seeded or a crash will occur</div>
+<div class="line">  seedDungeonatorRNG();</div>
+<div class="line">  // the output grid for dungeonator</div>
+<div class="line">  Grid grid;</div>
+<div class="line">  // make sure to check if it was successful (out of memory, etc)</div>
+<div class="line">  bool success = generateDungeon(&amp;grid, 51, 27, 1000, 2);</div>
+<div class="line">  if (!success) {</div>
+<div class="line">    fprintf(stderr, &quot;failed to generate dungeon&quot;);</div>
+<div class="line">    return 1;</div>
+<div class="line">  }</div>
+<div class="line">  // debug print the grid (as an example)</div>
+<div class="line">  printGrid(&amp;grid);</div>
+<div class="line"> </div>
+<div class="line">  // prevent memory leak</div>
+<div class="line">  freeGrid(&amp;grid);</div>
+<div class="line">  return 0;</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>you can find the full docs for generateDungeon <a href="https://benjaminhinchliff.github.io/dungeonator/generate_8h.html#aab5f8e2efd492a284e90f05f51461309">here</a></p>
+<h1><a class="anchor" id="autotoc_md3"></a>
+Building</h1>
+<p>if integrating into another cmake project, just add this using add_subdirectory, and everything else will be handled automatically. Building tests and docs will be off by default.</p>
+<h1><a class="anchor" id="autotoc_md4"></a>
 Completion Status:</h1>
 <ul>
 <li>[X] room placement</li>
@@ -86,7 +113,8 @@ Completion Status:</h1>
 <li>[X] fix crashing on malloc errors (I was lazy)</li>
 <li>[X] documentation (using Doxygen)</li>
 <li>[ ] complete README</li>
-<li>[X] bundled alternative to <code>rand()</code> so tests are less brittle </li>
+<li>[X] bundled alternative to <code>rand()</code> so tests are less brittle</li>
+<li>[ ] wasm demo </li>
 </ul>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->

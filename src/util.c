@@ -1,5 +1,10 @@
 #include "util.h"
 
+void seedDungeonatorRNG() {
+  // https://github.com/imneme/pcg-c-basic/blob/master/pcg32-global-demo.c
+  pcg32_srandom(time(NULL) ^ (intptr_t)&printf, time(NULL) ^ (intptr_t)&round);
+}
+
 bool contains(int* arr, size_t start, size_t end, int element) {
   for (size_t i = start; i < end; ++i) {
     if (arr[i] == element) {

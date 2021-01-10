@@ -60,3 +60,13 @@ TEST_CASE("dungeon generation works", "[rooms]") {
   ApprovalTests::Approvals::verify(buffer);
   freeGrid(&grid);
 }
+
+TEST_CASE("non-determenistic dungeon generation works", "[rooms]") {
+  seedDungeonatorRNG();
+  Grid grid;
+  bool success = generateDungeon(&grid, 51, 27, 1000, 2);
+  if (!success) {
+    throw std::runtime_error("failed to generate dungeon");
+  }
+  freeGrid(&grid);
+}

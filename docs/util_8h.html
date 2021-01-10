@@ -78,6 +78,7 @@ $(function() {
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
 <code>#include &quot;pcg_basic.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="direction_8h_source.html">direction.h</a>&quot;</code><br />
 </div>
@@ -85,6 +86,8 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:aa2e9e192e75f1d6bf324f1e330188e0f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#aa2e9e192e75f1d6bf324f1e330188e0f">seedDungeonatorRNG</a> ()</td></tr>
+<tr class="separator:aa2e9e192e75f1d6bf324f1e330188e0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaec2c0e675528caa1e35a032d6817ca0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#aaec2c0e675528caa1e35a032d6817ca0">contains</a> (int *arr, size_t start, size_t end, int element)</td></tr>
 <tr class="separator:aaec2c0e675528caa1e35a032d6817ca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a487d032726000a712d217e288e093d57"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a487d032726000a712d217e288e093d57">shuffleDirections</a> (<a class="el" href="direction_8h.html#a000022139e4f61dff5717a241e243e81">Direction</a> *array, int n)</td></tr>
@@ -144,6 +147,24 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>whether the array contains the element </dd></dl>
+
+</div>
+</div>
+<a id="aa2e9e192e75f1d6bf324f1e330188e0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2e9e192e75f1d6bf324f1e330188e0f">&#9670;&nbsp;</a></span>seedDungeonatorRNG()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void seedDungeonatorRNG </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>seed the prng used by the dungeon generation algorithm with a non-determentistic seed </p>
 
 </div>
 </div>

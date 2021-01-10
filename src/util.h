@@ -8,6 +8,7 @@
 
 #include <stdlib.h>
 #include <stdbool.h>
+#include <math.h>
 
 #include "pcg_basic.h"
 
@@ -16,6 +17,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif // __cplusplus
+  /**
+  * seed the prng used by the dungeon generation algorithm with a non-determentistic seed
+  */
+  void seedDungeonatorRNG();
 
   /**
   * test if an int array contains an int
