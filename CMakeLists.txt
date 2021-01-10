@@ -2,8 +2,8 @@
 
 project("dungeonator")
 
-option(BUILD_TESTS "Build tests" ON)
-option(BUILD_DOCS "Build doxygen docs" ON)
+option(BUILD_TESTS "Build tests" OFF)
+option(BUILD_DOCS "Build doxygen docs" OFF)
 
 add_subdirectory("src")
 if(BUILD_TESTS)
