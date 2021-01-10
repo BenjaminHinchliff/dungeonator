@@ -77,27 +77,28 @@ $(function() {
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;math.h&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;pcg_basic.h&quot;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="direction_8h.html">direction.h</a>&quot;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// __cplusplus</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"></span>  void seedDungeonatorRNG();</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  <span class="keywordtype">bool</span> <a class="code" href="util_8h.html#aaec2c0e675528caa1e35a032d6817ca0">contains</a>(<span class="keywordtype">int</span>* arr, <span class="keywordtype">size_t</span> start, <span class="keywordtype">size_t</span> end, <span class="keywordtype">int</span> element);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="util_8h.html#a487d032726000a712d217e288e093d57">shuffleDirections</a>(<a class="code" href="direction_8h.html#a000022139e4f61dff5717a241e243e81">Direction</a>* array, <span class="keywordtype">int</span> n);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="util_8h.html#a5b6cbe2266a7e76db09cbca18e480a2a">uniform_distribution</a>(<span class="keywordtype">int</span> rangeLow, <span class="keywordtype">int</span> rangeHigh);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;}</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// __cplusplus</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// !RANDOM_H</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;time.h&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;pcg_basic.h&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="direction_8h.html">direction.h</a>&quot;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// __cplusplus</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment"></span>  void seedDungeonatorRNG();</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  <span class="keywordtype">bool</span> <a class="code" href="util_8h.html#aaec2c0e675528caa1e35a032d6817ca0">contains</a>(<span class="keywordtype">int</span>* arr, <span class="keywordtype">size_t</span> start, <span class="keywordtype">size_t</span> end, <span class="keywordtype">int</span> element);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="util_8h.html#a487d032726000a712d217e288e093d57">shuffleDirections</a>(<a class="code" href="direction_8h.html#a000022139e4f61dff5717a241e243e81">Direction</a>* array, <span class="keywordtype">int</span> n);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="util_8h.html#a5b6cbe2266a7e76db09cbca18e480a2a">uniform_distribution</a>(<span class="keywordtype">int</span> rangeLow, <span class="keywordtype">int</span> rangeHigh);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;}</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// __cplusplus</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// !RANDOM_H</span></div>
 <div class="ttc" id="adirection_8h_html"><div class="ttname"><a href="direction_8h.html">direction.h</a></div><div class="ttdoc">declaration file for directions enum</div></div>
 <div class="ttc" id="adirection_8h_html_a000022139e4f61dff5717a241e243e81"><div class="ttname"><a href="direction_8h.html#a000022139e4f61dff5717a241e243e81">Direction</a></div><div class="ttdeci">enum Directions Direction</div></div>
 <div class="ttc" id="autil_8h_html_a487d032726000a712d217e288e093d57"><div class="ttname"><a href="util_8h.html#a487d032726000a712d217e288e093d57">shuffleDirections</a></div><div class="ttdeci">void shuffleDirections(Direction *array, int n)</div><div class="ttdef"><b>Definition:</b> util.c:17</div></div>

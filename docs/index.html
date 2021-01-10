@@ -76,32 +76,41 @@ About</h1>
 <p>The algorithm used is a variant of the one described <a href="https://journal.stuffwithstuff.com/2014/12/21/rooms-and-mazes/">here</a>.</p>
 <h1><a class="anchor" id="autotoc_md2"></a>
 Usage Example</h1>
-<div class="fragment"><div class="line"> {c++}</div>
-<div class="line">#include &quot;dungeonator.h&quot;</div>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="dungeonator_8h.html">dungeonator.h</a>&quot;</span></div>
 <div class="line"> </div>
-<div class="line">int main() {</div>
-<div class="line">  // the random generator must be seeded or a crash will occur</div>
-<div class="line">  seedDungeonatorRNG();</div>
-<div class="line">  // the output grid for dungeonator</div>
-<div class="line">  Grid grid;</div>
-<div class="line">  // make sure to check if it was successful (out of memory, etc)</div>
-<div class="line">  bool success = generateDungeon(&amp;grid, 51, 27, 1000, 2);</div>
-<div class="line">  if (!success) {</div>
-<div class="line">    fprintf(stderr, &quot;failed to generate dungeon&quot;);</div>
-<div class="line">    return 1;</div>
+<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line">  <span class="comment">// the random generator must be seeded or a crash will occur</span></div>
+<div class="line">  <a class="code" href="util_8h.html#aa2e9e192e75f1d6bf324f1e330188e0f">seedDungeonatorRNG</a>();</div>
+<div class="line">  <span class="comment">// the output grid for dungeonator</span></div>
+<div class="line">  <a class="code" href="struct_grids.html">Grid</a> grid;</div>
+<div class="line">  <span class="comment">// make sure to check if it was successful (out of memory, etc)</span></div>
+<div class="line">  <span class="keywordtype">bool</span> success = <a class="code" href="generate_8h.html#aab5f8e2efd492a284e90f05f51461309">generateDungeon</a>(&amp;grid, 51, 27, 1000, 2);</div>
+<div class="line">  <span class="keywordflow">if</span> (!success) {</div>
+<div class="line">    fprintf(stderr, <span class="stringliteral">&quot;failed to generate dungeon&quot;</span>);</div>
+<div class="line">    <span class="keywordflow">return</span> 1;</div>
 <div class="line">  }</div>
-<div class="line">  // debug print the grid (as an example)</div>
-<div class="line">  printGrid(&amp;grid);</div>
+<div class="line">  <span class="comment">// debug print the grid (as an example)</span></div>
+<div class="line">  <a class="code" href="grid_8h.html#ad061c47e6a486e993604cdae0809d3e5">printGrid</a>(&amp;grid);</div>
 <div class="line"> </div>
-<div class="line">  // prevent memory leak</div>
-<div class="line">  freeGrid(&amp;grid);</div>
-<div class="line">  return 0;</div>
+<div class="line">  <span class="comment">// prevent memory leak</span></div>
+<div class="line">  <a class="code" href="grid_8h.html#ad62350e857290bf3ce65221bd056c433">freeGrid</a>(&amp;grid);</div>
+<div class="line">  <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
+<div class="ttc" id="adungeonator_8h_html"><div class="ttname"><a href="dungeonator_8h.html">dungeonator.h</a></div><div class="ttdoc">main include file</div></div>
+<div class="ttc" id="agenerate_8h_html_aab5f8e2efd492a284e90f05f51461309"><div class="ttname"><a href="generate_8h.html#aab5f8e2efd492a284e90f05f51461309">generateDungeon</a></div><div class="ttdeci">bool generateDungeon(Grid *grid, int width, int height, int placeTries, int additionalRoomSize)</div><div class="ttdef"><b>Definition:</b> generate.c:3</div></div>
+<div class="ttc" id="agrid_8h_html_ad061c47e6a486e993604cdae0809d3e5"><div class="ttname"><a href="grid_8h.html#ad061c47e6a486e993604cdae0809d3e5">printGrid</a></div><div class="ttdeci">void printGrid(Grid *grid)</div><div class="ttdef"><b>Definition:</b> grid.c:94</div></div>
+<div class="ttc" id="agrid_8h_html_ad62350e857290bf3ce65221bd056c433"><div class="ttname"><a href="grid_8h.html#ad62350e857290bf3ce65221bd056c433">freeGrid</a></div><div class="ttdeci">void freeGrid(Grid *grid)</div><div class="ttdef"><b>Definition:</b> grid.c:133</div></div>
+<div class="ttc" id="astruct_grids_html"><div class="ttname"><a href="struct_grids.html">Grids</a></div><div class="ttdef"><b>Definition:</b> grid.h:36</div></div>
+<div class="ttc" id="autil_8h_html_aa2e9e192e75f1d6bf324f1e330188e0f"><div class="ttname"><a href="util_8h.html#aa2e9e192e75f1d6bf324f1e330188e0f">seedDungeonatorRNG</a></div><div class="ttdeci">void seedDungeonatorRNG()</div><div class="ttdef"><b>Definition:</b> util.c:3</div></div>
 </div><!-- fragment --><p>you can find the full docs for generateDungeon <a href="https://benjaminhinchliff.github.io/dungeonator/generate_8h.html#aab5f8e2efd492a284e90f05f51461309">here</a></p>
 <h1><a class="anchor" id="autotoc_md3"></a>
-Building</h1>
-<p>if integrating into another cmake project, just add this using add_subdirectory, and everything else will be handled automatically. Building tests and docs will be off by default.</p>
+API Docs</h1>
+<p>The full documentation for the API can be found hosted on github pages <a href="https://benjaminhinchliff.github.io/dungeonator/">https://benjaminhinchliff.github.io/dungeonator/</a></p>
 <h1><a class="anchor" id="autotoc_md4"></a>
+Building</h1>
+<p>If you're integrating into another cmake project, just add this using add_subdirectory, and everything else will be handled automatically. Building tests and docs will be off by default (you can turn them on with cmake options if you so choose)</p>
+<p>Building it on it's own it should be just as easy - just run cmake and it will handle fetching libraries (if needed) for tests and random number generation. If you want to build the docs, Doxygen must be installed and accessible to cmake. If you're building the tests, CMAKE_UNITY_BUILD will be turned on for non-windows platforms using the Ninja generator due to some bugs with __FILE__ documented <a href="https://approvaltestscpp.readthedocs.io/en/latest/generated_docs/TroubleshootingMisconfiguredBuild.html">here</a>.</p>
+<h1><a class="anchor" id="autotoc_md5"></a>
 Completion Status:</h1>
 <ul>
 <li>[X] room placement</li>
@@ -112,7 +121,7 @@ Completion Status:</h1>
 <li>[X] code cleanup for room placement and generation logic</li>
 <li>[X] fix crashing on malloc errors (I was lazy)</li>
 <li>[X] documentation (using Doxygen)</li>
-<li>[ ] complete README</li>
+<li>[X] complete README</li>
 <li>[X] bundled alternative to <code>rand()</code> so tests are less brittle</li>
 <li>[ ] wasm demo </li>
 </ul>
