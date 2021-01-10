@@ -131,9 +131,9 @@ void free2d(void** arr, int height) {
 }
 
 void freeGrid(Grid* maze) {
-  free2d(maze->data, maze->height);
+  free2d((void**)maze->data, maze->height);
 }
 
 void freeRegions(regions_t regions, int height) {
-  free2d(regions, height);
+  free2d((void**)regions, height);
 }

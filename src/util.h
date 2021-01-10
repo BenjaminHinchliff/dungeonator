@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <math.h>
+#include <time.h>
 
 #include "pcg_basic.h"
 
