@@ -12,7 +12,7 @@ The algorithm used is a variant of the one described [here](https://journal.stuf
 
 ## Usage Example
 
-```cpp
+```c
 #include "dungeonator.h"
 
 int main() {
