@@ -37,6 +37,10 @@ int main() {
 
 you can find the full docs for generateDungeon [here](https://benjaminhinchliff.github.io/dungeonator/generate_8h.html#aab5f8e2efd492a284e90f05f51461309)
 
+## API Docs
+
+The full documentation for the API can be found hosted on github pages https://benjaminhinchliff.github.io/dungeonator/
+
 ## Building
 
 If you're integrating into another cmake project, just add this using add_subdirectory, and everything else will be handled automatically. Building tests and docs will be off by default (you can turn them on with cmake options if you so choose)
