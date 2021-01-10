@@ -44,7 +44,7 @@ Connector* getConnectors(Grid* grid, regions_t regions, size_t* num_connectors) 
 
 int* mapMergedRegions(Connector* connector, int* merged, int* num_regions) {
   // map together merged regions while deduplicating array
-  static int regions[4];
+  static int regions[NUM_DIRECTIONS];
   *num_regions = 0;
   for (int i = 0; i < connector->num_regions; ++i) {
     int region = merged[connector->regions[i]];
