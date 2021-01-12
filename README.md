@@ -1,7 +1,5 @@
 # Dungeonator
 
-> :warning: everything is done now, but I still need to test cmake integration with other projects
-
 ## About
 
 This is a small C library designed for people who just want procedural rouguelike dungeon generation,
@@ -58,4 +56,5 @@ Building it on it's own it should be just as easy - just run cmake and it will h
 - [X] documentation (using Doxygen)
 - [X] complete README
 - [X] bundled alternative to `rand()` so tests are less brittle
-- [ ] wasm demo
+- [X] wasm demo
+- [ ] rust bindings
