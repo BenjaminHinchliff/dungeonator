@@ -39,14 +39,13 @@ set(DUNGEONATOR_HDRS
 	"connectors.h"
 	"dead_ends.h")
 
-add_library(${PROJECT_NAME} ${DUNGEONATOR_SRCS} ${DUNGEONATOR_HDRS})
+add_library(${PROJECT_NAME} STATIC ${DUNGEONATOR_SRCS} ${DUNGEONATOR_HDRS})
 target_include_directories(${PROJECT_NAME} PUBLIC ".")
 target_link_libraries(${PROJECT_NAME} PUBLIC pcg)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER "${DUNGEONATOR_HDRS}")
 
-install(
-	TARGETS ${PROJECT_NAME}
+include(GNUInstallDirs)
+install(TARGETS ${PROJECT_NAME}
 	LIBRARY
-	PUBLIC_HEADER
-)
+	PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}")
