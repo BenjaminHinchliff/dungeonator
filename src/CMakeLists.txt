@@ -42,3 +42,11 @@ set(DUNGEONATOR_HDRS
 add_library(${PROJECT_NAME} ${DUNGEONATOR_SRCS} ${DUNGEONATOR_HDRS})
 target_include_directories(${PROJECT_NAME} PUBLIC ".")
 target_link_libraries(${PROJECT_NAME} PUBLIC pcg)
+
+set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER "${DUNGEONATOR_HDRS}")
+
+install(
+	TARGETS ${PROJECT_NAME}
+	LIBRARY
+	PUBLIC_HEADER
+)
