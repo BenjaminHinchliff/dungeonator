@@ -4,16 +4,23 @@
 include(FetchContent)
 
 FetchContent_Declare(
-	pcg_fetch
+	pcg_basic
 	GIT_REPOSITORY https://github.com/imneme/pcg-c-basic.git
 )
 
-FetchContent_GetProperties(pcg_fetch)
-if(NOT pcg_fetch_POPULATED)
+FetchContent_GetProperties(pcg_basic)
+if(NOT pcg_POPULATED)
 	set(FETCHCONTENT_QUIET OFF)
-	FetchContent_Populate(pcg_fetch)
-	add_library(pcg STATIC "${pcg_fetch_SOURCE_DIR}/pcg_basic.c")
-	target_include_directories(pcg PUBLIC "${pcg_fetch_SOURCE_DIR}")
+	FetchContent_Populate(pcg_basic)
+	add_library(pcg_basic STATIC "${pcg_basic_SOURCE_DIR}/pcg_basic.c")
+	target_include_directories(pcg_basic PUBLIC "${pcg_basic_SOURCE_DIR}")
+
+	set_target_properties(pcg_basic PROPERTIES PUBLIC_HEADER "${pcg_basic_SOURCE_DIR}/pcg_basic.h")
+
+	include(GNUInstallDirs)
+	install(TARGETS pcg_basic
+		LIBRARY
+		PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}")
 endif()
 
 set(DUNGEONATOR_SRCS
@@ -41,7 +48,7 @@ set(DUNGEONATOR_HDRS
 
 add_library(${PROJECT_NAME} STATIC ${DUNGEONATOR_SRCS} ${DUNGEONATOR_HDRS})
 target_include_directories(${PROJECT_NAME} PUBLIC ".")
-target_link_libraries(${PROJECT_NAME} PUBLIC pcg)
+target_link_libraries(${PROJECT_NAME} PUBLIC pcg_basic)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER "${DUNGEONATOR_HDRS}")
 
