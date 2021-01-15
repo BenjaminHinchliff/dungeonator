@@ -57,4 +57,4 @@ Building it on it's own it should be just as easy - just run cmake and it will h
 - [X] complete README
 - [X] bundled alternative to `rand()` so tests are less brittle
 - [X] wasm demo
-- [ ] rust bindings
+- [X] rust bindings
